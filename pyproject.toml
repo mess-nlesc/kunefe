@@ -25,7 +25,7 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
 ]
 dependencies = []
-description = "A package to run containers on HPC systems"
+description = "A Python package to run containers on HPC systems"
 keywords = [
     "containers",
     "hpc",

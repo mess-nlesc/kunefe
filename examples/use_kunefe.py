@@ -5,6 +5,9 @@ from kunefe import Kunefe
 
 kunefe = Kunefe(username="xenon", hostname="localhost", port=10022)
 
+# set up the clients and connect to the remote
+# kunefe.connect_remote()
+
 # # submit a new job
 # job_id, stdin, stdout, stderr = kunefe.submit_job(
 #     job_file="/home/xenon/test-slurm.job"

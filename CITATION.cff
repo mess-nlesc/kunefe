@@ -1,18 +1,25 @@
-# YAML 1.2
----
-cff-version: "1.2.0"
-title: "kunefe"
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: kunefe
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
 authors:
-  -
-    family-names: D.
-    given-names: Faruk
-    orcid: "https://orcid.org/0000-0000-0000-0000"
-date-released: 20??-MM-DD
-doi: <insert your DOI here>
-version: "0.1.0"
-repository-code: "https://github.com/mess-nlesc/kunefe"
+  - given-names: Faruk
+    family-names: Diblen
+    email: f.diblen@esciencecenter.nl
+    affiliation: Netherlands eScience Center
+    orcid: 'https://orcid.org/0000-0002-0989-929X'
+repository-code: 'https://github.com/mess-nlesc/kunefe'
 keywords:
-  - containers
+  - docker
   - hpc
-message: "If you use this software, please cite it using these metadata."
+  - containers
+  - slurm
+  - apptainer
 license: Apache-2.0
+version: 0.1.0
+date-released: '2024-02-28'

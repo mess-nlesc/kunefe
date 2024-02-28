@@ -44,3 +44,63 @@ def test_connection_with_password(monkeypatch, slurm_service):
     monkeypatch.setattr('getpass.getpass', lambda _: next(responses))
     Kunefe(username="xenon", hostname="localhost", port=10022)
     # assert Kunefe(username="xenon", hostname="localhost", port=10022) == ("Me", "xxx")
+
+
+def test_create_remote_folder():
+    """Test create_remote_folder
+    """
+    pass
+
+
+def test_get_files():
+    """Test get_files
+    """
+    pass
+
+
+def test_put_files():
+    """Test put_files
+    """
+    pass
+
+
+def test_submit_job():
+    """Test submit_job
+    """
+    pass
+
+
+def test_build_apptainer_image():
+    """Test build_apptainer_image
+    """
+    pass
+
+
+def test_check_local_command_exists():
+    """Test check_local_command_exists
+    """
+    pass
+
+
+def test_check_required_tools():
+    """Test check_required_tools
+    """
+    pass
+
+
+def test_generate_job_file():
+    """Test generate_job_file
+    """
+    pass
+
+
+def test_run_remote_command():
+    """Test run_remote_command
+    """
+    pass
+
+
+def test_watch_slurm_queue():
+    """Test watch_slurm_queue
+    """
+    pass

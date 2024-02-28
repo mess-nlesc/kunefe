@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 """A script to test kunefe module."""
 
-from kunefe import kunefe
+from kunefe import Kunefe
 
 if __name__ == "__main__":
 
-    kunefe = kunefe(username="xenon", hostname="localhost", port=10022)
+    kunefe = Kunefe(username="xenon", hostname="localhost", port=10022)
 
     # # submit a new job
     # job_id, stdin, stdout, stderr = kunefe.submit_job(

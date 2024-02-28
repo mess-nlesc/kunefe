@@ -15,7 +15,6 @@ def slurm_service():
     docker_image_name = "xenonmiddleware/slurm:latest"
 
     # https://docker-py.readthedocs.io/en/stable/containers.html
-
     # start the SLURM service before tests
     client = docker.from_env()
     print('\nStarting the Docker container')

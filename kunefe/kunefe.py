@@ -130,8 +130,8 @@ class Kunefe:
         Example:
             This function can be called with `Jane Smith` as argument using
 
-            >>> from kunefe.my_module import kunefe
-            >>> put_files(remote_folder="/home/xenon/", local_folder="./test_folder")
+            # >>> from kunefe.my_module import kunefe
+            # >>> put_files(remote_folder="/home/xenon/", local_folder="./test_folder")
         """
         if remote_folder == "~":
             remote_folder = os.path.expanduser("~")

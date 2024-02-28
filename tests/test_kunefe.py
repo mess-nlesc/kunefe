@@ -90,7 +90,7 @@ def test_check_required_tools(monkeypatch):
     monkeypatch.setattr('getpass.getpass', lambda _: next(responses))
 
     kunefe = Kunefe(username="xenon", hostname="localhost", port=10022)
-    requirements_status = kunefe.check_required_tools(['docker', 'apptainer'])
+    requirements_status = kunefe.check_required_tools(['docker', 'rsync'])
     print(f'Requirements status: {requirements_status}')
     assert requirements_status is True, 'all the required tools need to be installed on your system'
 
@@ -103,7 +103,7 @@ def test_check_required_tools_fail(monkeypatch):
     monkeypatch.setattr('getpass.getpass', lambda _: next(responses))
 
     kunefe = Kunefe(username="xenon", hostname="localhost", port=10022)
-    requirements_status = kunefe.check_required_tools(['docker', 'apptainer', 'bsxcommand'])
+    requirements_status = kunefe.check_required_tools(['docker', 'rsync', 'bsxcommand'])
     print(f'Requirements status: {requirements_status}')
     assert requirements_status is False, 'should fail for bsxcommand'
 

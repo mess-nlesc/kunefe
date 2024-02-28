@@ -45,10 +45,10 @@ class Kunefe:
         self.username = username
         self.hostname = hostname
         self.port = port
-        self.password = self.set_password()
-        self.transport = self.set_transport()
-        self.ssh_client = self.set_ssh_client()
-        self.sftp_client = self.set_sftp_client()
+        self.password = None
+        self.transport = None
+        self.ssh_client = None
+        self.sftp_client = None
 
     def set_password(self) -> str:
         """Sets user password."""
@@ -79,6 +79,14 @@ class Kunefe:
         self.transport.connect(username=self.username, password=self.password)
         sftp_client = paramiko.SFTPClient.from_transport(self.transport)
         return sftp_client
+
+    def connect_remote(self) -> None:
+        """Set the password, clients and connect to the remote host
+        """
+        self.password = self.set_password()
+        self.transport = self.set_transport()
+        self.ssh_client = self.set_ssh_client()
+        self.sftp_client = self.set_sftp_client()
 
     def create_remote_folder(self, remote_folder: str) -> None:
         """Create a folder in the remote server."""

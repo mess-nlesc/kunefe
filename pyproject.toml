@@ -53,6 +53,7 @@ dev = [
     "sphinx-autoapi",
     "tox",
     "myst_parser",
+    "docker"
 ]
 publishing = [
     "build",

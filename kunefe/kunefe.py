@@ -37,12 +37,12 @@ class Kunefe:
         self.username = username
         self.hostname = hostname
         self.port = port
-        self.password = self.get_password()
+        self.password = self.set_password()
         self.transport = self.set_transport()
         self.ssh_client = self.set_ssh_client()
         self.sftp_client = self.set_sftp_client()
 
-    def get_password(self) -> str:
+    def set_password(self) -> str:
         """Sets user password
         """
         password = getpass.getpass(

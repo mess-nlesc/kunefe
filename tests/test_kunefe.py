@@ -36,6 +36,8 @@ def slurm_service():
 
 
 # https://docs.pytest.org/en/latest/how-to/monkeypatch.html
+# to only test this function run:
+# pytest --capture=no -v tests/test_kunefe.py::test_connection_with_password
 def test_connection_with_password(monkeypatch, slurm_service):
     """Test if kunefe can ssh to the SLURM Docker container using a password."""
     responses = iter(['javagat'])  # the default password
@@ -80,6 +82,8 @@ def test_connection_with_password(monkeypatch, slurm_service):
 #     pass
 
 
+# to only test this function run:
+# pytest --capture=no -v tests/test_kunefe.py::test_check_required_tools
 def test_check_required_tools(monkeypatch):
     """Test if required tools can be found."""
     responses = iter(['javagat'])  # the default password
@@ -91,6 +95,8 @@ def test_check_required_tools(monkeypatch):
     assert requirements_status is True, 'all the required tools need to be installed on your system'
 
 
+# to only test this function run:
+# pytest --capture=no -v tests/test_kunefe.py::test_check_required_tools_fail
 def test_check_required_tools_fail(monkeypatch):
     """Test if check_required_tools fails for a command that does not exist."""
     responses = iter(['javagat'])  # the default password

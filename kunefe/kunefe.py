@@ -15,7 +15,8 @@ import paramiko
 import jinja2
 
 # setup logging
-paramiko.util.log_to_file("Messy.log")
+DEFAULT_LOG_FILENAME = "kunefe.log"
+paramiko.util.log_to_file(DEFAULT_LOG_FILENAME)
 
 
 class Messy:

@@ -86,6 +86,9 @@ line_length = 120
 include = ["kunefe*"]
 exclude = ["tests*"]
 
+[tool.setuptools.package-data]
+kunefe = ["templates/*.jinja"]
+
 [tool.tox]
 legacy_tox_ini = """
 [tox]

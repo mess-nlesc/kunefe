@@ -273,7 +273,7 @@ class Kunefe:
             )  # Cursor up for X number of lines
 
     def watch_slurm_queue(self, sleep_time: float = 5.0) -> None:
-        """_summary_"""
+        """Watches the SLURM job queue"""
         command = 'squeue --all'
         while True:
             self.run_command_on_remote(command=command, timeout=5, flush=True)

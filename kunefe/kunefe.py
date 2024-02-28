@@ -4,15 +4,16 @@ Returns:
     _type_: _description_
 """
 
-import sys
-import os
-import time
 import getpass
+import os
 import subprocess
+import sys
+import time
 from shutil import which
-from stat import S_ISDIR, S_ISREG
-import paramiko
+from stat import S_ISDIR
+from stat import S_ISREG
 import jinja2
+import paramiko
 
 # setup logging
 DEFAULT_LOG_FILENAME = "kunefe.log"
@@ -20,7 +21,7 @@ paramiko.util.log_to_file(DEFAULT_LOG_FILENAME)
 
 
 class Kunefe:
-    """Submit jobs to SLURM cluster
+    """Submit jobs to SLURM cluster.
 
     Args:
         username:
@@ -34,6 +35,13 @@ class Kunefe:
     """
 
     def __init__(self, username: str, hostname: str, port: int) -> None:
+        """_summary_.
+
+        Args:
+            username (str): _description_
+            hostname (str): _description_
+            port (int): _description_
+        """
         self.username = username
         self.hostname = hostname
         self.port = port
@@ -43,24 +51,19 @@ class Kunefe:
         self.sftp_client = self.set_sftp_client()
 
     def set_password(self) -> str:
-        """Sets user password
-        """
+        """Sets user password."""
         password = getpass.getpass(
             f"password for {self.username}@{self.hostname}: "
         )
         return password
 
     def set_transport(self) -> paramiko.Transport:
-        """
-        Creates an paramiko transport
-        """
+        """Creates an paramiko transport."""
         transport = paramiko.Transport((self.hostname, self.port))
         return transport
 
     def set_ssh_client(self) -> paramiko.SSHClient:
-        """
-        Creates an SSH client and connects to remote server
-        """
+        """Creates an SSH client and connects to remote server."""
         ssh_client = paramiko.SSHClient()
         ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         ssh_client.connect(
@@ -72,26 +75,20 @@ class Kunefe:
         return ssh_client
 
     def set_sftp_client(self) -> paramiko.SFTPClient:
-        """
-        Creates a SFTP client
-        """
+        """Creates a SFTP client."""
         self.transport.connect(username=self.username, password=self.password)
         sftp_client = paramiko.SFTPClient.from_transport(self.transport)
         return sftp_client
 
     def create_remote_folder(self, remote_folder: str) -> None:
-        """
-        Create a folder in the remote server
-        """
+        """Create a folder in the remote server."""
         try:
             self.sftp_client.mkdir(remote_folder)
         except IOError:
             print(f"(assuming {remote_folder}/ already exists)")
 
     def get_files(self, remote_folder: str, local_folder: str = "./") -> None:
-        """
-        Get files from the remote server
-        """
+        """Get files from the remote server."""
         if not os.path.exists(local_folder):
             os.mkdir(local_folder)
 
@@ -117,11 +114,12 @@ class Kunefe:
         local_folder: str = "./",
         verbose: bool = False,
     ) -> None:
-        """Copy files to the remote server
+        """Copy files to the remote server.
+
         Args:
             remote_folder (str): Path on a remote system to copy the files or folders
             local_folder (str): File or a folder name to copy
-            verbose (bool):Show verbose info
+            verbose (bool):Show verbose info.
 
         Returns:
             None
@@ -135,7 +133,6 @@ class Kunefe:
             >>> from kunefe.my_module import kunefe
             >>> put_files(remote_folder="/home/xenon/", local_folder="./test_folder")
         """
-
         if remote_folder == "~":
             remote_folder = os.path.expanduser("~")
 
@@ -173,9 +170,7 @@ class Kunefe:
                     )
 
     def submit_job(self, job_file: str) -> None:
-        """
-        Submit job to SLURM cluster
-        """
+        """Submit job to SLURM cluster."""
         stdin, stdout, stderr = self.ssh_client.exec_command(
             f"sbatch {job_file}"
         )
@@ -184,7 +179,7 @@ class Kunefe:
         return job_id, stdin, stdout, stderr
 
     def build_apptainer_image(self, netlogo_version: str) -> bool:
-        """Builds a netlogo apptainer image"""
+        """Builds a netlogo apptainer image."""
         docker_image = f"comses/netlogo:{netlogo_version}"
         apptainer_file = f"netlogo_{netlogo_version}.sif"
         build_command = f"apptainer pull docker://{docker_image}"
@@ -225,7 +220,6 @@ class Kunefe:
         job_time: str,
     ) -> None:
         """Generate batch script file for job submission."""
-
         parent_dir = os.path.dirname(__file__)
         templates_folder = os.path.join(parent_dir, "templates")
         environment = jinja2.Environment(
@@ -250,7 +244,7 @@ class Kunefe:
     def run_remote_command(
         self, command: str, timeout: int = 5, flush: bool = False
     ) -> None:
-        """Run a command on a remote system"""
+        """Run a command on a remote system."""
         transport = self.ssh_client.get_transport()
         channel = transport.open_session()
         channel.get_pty()
@@ -273,7 +267,7 @@ class Kunefe:
             )  # Cursor up for X number of lines
 
     def watch_slurm_queue(self, sleep_time: float = 5.0) -> None:
-        """Watches the SLURM job queue"""
+        """Watches the SLURM job queue."""
         command = 'squeue --all'
         while True:
             self.run_remote_command(command=command, timeout=5, flush=True)

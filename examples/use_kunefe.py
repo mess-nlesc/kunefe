@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-"""A script to test kunefe module
-"""
+"""A script to test kunefe module."""
 
 from kunefe import kunefe
 

@@ -1,7 +1,7 @@
-"""Tests for the kunefe"""
+"""Tests for the kunefe."""
 from time import sleep
-import pytest
 import docker
+import pytest
 from kunefe import Kunefe
 
 
@@ -9,8 +9,7 @@ from kunefe import Kunefe
 # pytest --capture=no -v tests/test_kunefe.py
 @pytest.fixture(scope='session', autouse=True)
 def slurm_service():
-    """Start the SLURM service before running the tests
-    """
+    """Start the SLURM service before running the tests."""
     container_name = "test_kunefe"
     docker_image_name = "xenonmiddleware/slurm:latest"
 
@@ -38,8 +37,7 @@ def slurm_service():
 
 # https://docs.pytest.org/en/latest/how-to/monkeypatch.html
 def test_connection_with_password(monkeypatch, slurm_service):
-    """Test if kunefe can ssh to the SLURM Docker container using a password
-    """
+    """Test if kunefe can ssh to the SLURM Docker container using a password."""
     responses = iter(['javagat'])  # the default password
     monkeypatch.setattr('getpass.getpass', lambda _: next(responses))
     Kunefe(username="xenon", hostname="localhost", port=10022)
@@ -83,8 +81,7 @@ def test_connection_with_password(monkeypatch, slurm_service):
 
 
 def test_check_required_tools(monkeypatch):
-    """Test if required tools can be found
-    """
+    """Test if required tools can be found."""
     responses = iter(['javagat'])  # the default password
     monkeypatch.setattr('getpass.getpass', lambda _: next(responses))
 
@@ -95,8 +92,7 @@ def test_check_required_tools(monkeypatch):
 
 
 def test_check_required_tools_fail(monkeypatch):
-    """Test if check_required_tools fails for a command that does not exist
-    """
+    """Test if check_required_tools fails for a command that does not exist."""
     responses = iter(['javagat'])  # the default password
     monkeypatch.setattr('getpass.getpass', lambda _: next(responses))
 

@@ -1,12 +1,10 @@
-"""Tests for the kunefe"""
+"""Tests for the kunefe."""
 from time import sleep
 import docker
 
 
 def test_docker_start():
-    """Check if Docker container runs
-    """
-
+    """Check if Docker container runs."""
     container_name = "test_docker_start"
     docker_image_name = "xenonmiddleware/slurm:latest"
 
@@ -38,8 +36,7 @@ def test_docker_start():
 
 
 def test_slurm_queue():
-    """Check if the SLURM service of Xenon Docker image works
-    """
+    """Check if the SLURM service of Xenon Docker image works."""
     container_name = "test_slurm_queue"
     docker_image_name = "xenonmiddleware/slurm:latest"
 

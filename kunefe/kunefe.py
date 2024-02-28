@@ -192,7 +192,7 @@ class Kunefe:
         process = subprocess.Popen(build_command, shell=True)
         process.wait()
 
-        # TODO: handle process status mor ecarefully: what happens if the file exists?
+        # TODO: handle process status mor carefully: what happens if the file exists?
         if os.path.isfile(apptainer_file):
             print(f"Generated {apptainer_file}")
             # print(process.stdout)
@@ -208,9 +208,7 @@ class Kunefe:
 
     def check_required_tools(self, command_list: list[str]) -> bool:
         """Check whether all required commands are available."""
-
         # TODO: also check the required versions
-
         if all(self.check_local_command_exists(command) for command in command_list):
             print("Have all the required external tools.")
             return True
@@ -249,7 +247,7 @@ class Kunefe:
             message.write(content)
             print(f"Batch job file was saved as {filename}")
 
-    def run_command_on_remote(
+    def run_remote_command(
         self, command: str, timeout: int = 5, flush: bool = False
     ) -> None:
         """Run a command on a remote system"""
@@ -278,5 +276,5 @@ class Kunefe:
         """Watches the SLURM job queue"""
         command = 'squeue --all'
         while True:
-            self.run_command_on_remote(command=command, timeout=5, flush=True)
+            self.run_remote_command(command=command, timeout=5, flush=True)
             time.sleep(sleep_time)

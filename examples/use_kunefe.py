@@ -43,9 +43,5 @@ if __name__ == "__main__":
     #     job_time='0:30:00',
     # )
 
-    # # run a command on the remote system
-    # kunefe.run_remote_command(command='ls -la', flush=True)
-    # kunefe.run_remote_command(command='ls /')
-
     # # watch the slurm queue
     # kunefe.watch_slurm_queue()

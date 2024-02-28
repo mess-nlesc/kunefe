@@ -202,7 +202,7 @@ class Kunefe:
             print(process.stderr)
             return False
 
-    def check_command_exists(self, command: str) -> bool:
+    def check_local_command_exists(self, command: str) -> bool:
         """Check whether `command` is on PATH and marked as executable."""
         return which(command) is not None
 
@@ -211,7 +211,7 @@ class Kunefe:
 
         # TODO: also check the required versions
 
-        if all(self.check_command_exists(command) for command in command_list):
+        if all(self.check_local_command_exists(command) for command in command_list):
             print("Have all the required external tools.")
             return True
         else:

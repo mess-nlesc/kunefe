@@ -1,0 +1,15 @@
+{# templates/netlogo_job.jinja #}
+
+#!/bin/bash
+#SBATCH --job-name {{ job_name }}
+#SBATCH --output {{ job_name }}.out
+#SBATCH --error {{ job_name }}.err
+#SBATCH --time {{ job_time }}
+#SBATCH --mem=8GB
+#SBATCH --ntasks 1
+
+apptainer exec --env "JAVA_TOOL_OPTIONS=-Xmx8G" \
+    {{ sif_file_path }} /opt/netlogo/netlogo-headless.sh \
+    --model "{{ model_path }}" \
+    --experiment "{{ experiment_name }}" \
+    --table {{ table_name }}

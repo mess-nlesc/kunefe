@@ -228,10 +228,12 @@ class Kunefe:
     ) -> None:
         """Generate batch script file for job submission."""
 
+        parent_dir = os.path.dirname(__file__)
+        templates_folder = os.path.join(parent_dir, "templates")
         environment = jinja2.Environment(
-            loader=jinja2.FileSystemLoader("templates/")
+            loader=jinja2.FileSystemLoader(templates_folder)
         )
-        template = environment.get_template("netlogo_job.jinja")
+        template = environment.get_template("job.jinja")
 
         filename = f"{job_name}.sh"
         content = template.render(

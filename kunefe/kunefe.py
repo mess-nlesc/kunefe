@@ -274,8 +274,7 @@ class Kunefe:
 
     def watch_slurm_queue(self, sleep_time: float = 5.0) -> None:
         """_summary_"""
-        # command = 'squeue --all'
-        command = "ls /home/xenon"
+        command = 'squeue --all'
         while True:
             self.run_command_on_remote(command=command, timeout=5, flush=True)
             time.sleep(sleep_time)

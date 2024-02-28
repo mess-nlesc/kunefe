@@ -19,8 +19,19 @@ DEFAULT_LOG_FILENAME = "kunefe.log"
 paramiko.util.log_to_file(DEFAULT_LOG_FILENAME)
 
 
-class Messy:
-    """Submit jobs to SLURM cluster"""
+class Kunefe:
+    """Submit jobs to SLURM cluster
+
+    Args:
+        username:
+        hostname:
+        port:
+
+    Attributes:
+        username (str):
+        hostname (str):
+        port (int):
+    """
 
     def __init__(self, username: str, hostname: str, port: int) -> None:
         self.username = username
@@ -34,7 +45,6 @@ class Messy:
     def get_password(self) -> str:
         """Sets user password
         """
-
         password = getpass.getpass(
             f"password for {self.username}@{self.hostname}: "
         )

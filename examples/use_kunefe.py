@@ -40,13 +40,13 @@ if __name__ == "__main__":
     #     model_path="/home/model/path",
     #     sif_file_path="/home/xenon/netlogo_6.3.0.sif",
     #     experiment_name="test_experiment",
-    #     table_name="table_name"
+    #     table_name="table_name",
     #     job_time='0:30:00',
     # )
 
     # # run a command on the remote system
-    # kunefe.run_command_on_remote(command='ls -la', flush=True)
-    # kunefe.run_command_on_remote(command='ls /')
+    # kunefe.run_remote_command(command='ls -la', flush=True)
+    # kunefe.run_remote_command(command='ls /')
 
     # # watch the slurm queue
     # kunefe.watch_slurm_queue()

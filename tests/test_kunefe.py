@@ -42,7 +42,8 @@ def test_connection_with_password(monkeypatch, slurm_service):
     """Test if kunefe can ssh to the SLURM Docker container using a password."""
     responses = iter(['javagat'])  # the default password
     monkeypatch.setattr('getpass.getpass', lambda _: next(responses))
-    Kunefe(username="xenon", hostname="localhost", port=10022)
+    kunefe = Kunefe(username="xenon", hostname="localhost", port=10022)
+    kunefe.connect_remote()
     # assert Kunefe(username="xenon", hostname="localhost", port=10022) == ("Me", "xxx")
 
 

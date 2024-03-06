@@ -44,13 +44,17 @@ cd kunefe
 python -m pip install .
 ```
 
-## The project setup
+## Examples
 
-The project setup is documented in [project_setup.md](project_setup.md). Feel free to remove this document (and/or the link to this document) if you don't need it.
+See the examples in [`examples`](examples) folder.
 
 ## Documentation
 
 See [https://readthedocs.org/projects/kunefe/](https://readthedocs.org/projects/kunefe/) for the code documentation.
+
+## The project setup
+
+The project setup is documented in [project_setup.md](project_setup.md). Feel free to remove this document (and/or the link to this document) if you don't need it.
 
 ## Contributing
 

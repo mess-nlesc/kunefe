@@ -47,7 +47,7 @@ python -m pip install .
 
 ## Documentation
 
-Include a link to your project's full documentation here.
+See [https://readthedocs.org/projects/kunefe/](https://readthedocs.org/projects/kunefe/) for the code documentation.
 
 ## Contributing
 

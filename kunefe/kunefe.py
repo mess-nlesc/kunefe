@@ -81,8 +81,7 @@ class Kunefe:
         return sftp_client
 
     def connect_remote(self) -> None:
-        """Set the password, clients and connect to the remote host
-        """
+        """Set the password and clients and connect to the host."""
         self.password = self.set_password()
         self.transport = self.set_transport()
         self.ssh_client = self.set_ssh_client()

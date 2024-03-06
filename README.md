@@ -24,6 +24,7 @@ Kunefe is a Python package that helps users run containers on HPC systems. It ca
 | Documentation                      | [![Documentation Status](https://readthedocs.org/projects/kunefe/badge/?version=latest)](https://kunefe.readthedocs.io/en/latest/?badge=latest) |
 | **GitHub Actions**                 | &nbsp; |
 | Build                              | [![build](https://github.com/mess-nlesc/kunefe/actions/workflows/build.yml/badge.svg)](https://github.com/mess-nlesc/kunefe/actions/workflows/build.yml) |
+| Howfairis                              | [![build](https://github.com/mess-nlesc/kunefe/actions/workflows/howfairis.yml/badge.svg)](https://github.com/mess-nlesc/kunefe/actions/workflows/howfairis.yml) |
 | Citation data consistency          | [![cffconvert](https://github.com/mess-nlesc/kunefe/actions/workflows/cffconvert.yml/badge.svg)](https://github.com/mess-nlesc/kunefe/actions/workflows/cffconvert.yml) |
 | SonarCloud                         | [![sonarcloud](https://github.com/mess-nlesc/kunefe/actions/workflows/sonarcloud.yml/badge.svg)](https://github.com/mess-nlesc/kunefe/actions/workflows/sonarcloud.yml) |
 | MarkDown link checker              | [![markdown-link-check](https://github.com/mess-nlesc/kunefe/actions/workflows/markdown-link-check.yml/badge.svg)](https://github.com/mess-nlesc/kunefe/actions/workflows/markdown-link-check.yml) |

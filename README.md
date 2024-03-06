@@ -8,7 +8,6 @@ Kunefe is a Python package that helps users run containers on HPC systems. It ca
 - connect to a remote host via SSH and run commands
 - copy and retrieve files from a remote system
 
-
 ## Badges
 
 | fair-software.eu recommendations | |
@@ -31,13 +30,13 @@ Kunefe is a Python package that helps users run containers on HPC systems. It ca
 
 ## Installation
 
-To install kunefe from PyPI, run:
+To install the latest kunefe release from PyPI, run:
 
 ```console
 python -m pip kunefe
 ```
 
-To install kunefe from GitHub repository, do:
+To install the development version of kunefe from GitHub repository, do:
 
 ```console
 git clone git@github.com:mess-nlesc/kunefe.git

@@ -37,6 +37,12 @@ The project setup is documented in [project_setup.md](project_setup.md). Feel fr
 
 ## Installation
 
+To install kunefe from PyPI, run:
+
+```console
+python -m pip kunefe
+```
+
 To install kunefe from GitHub repository, do:
 
 ```console

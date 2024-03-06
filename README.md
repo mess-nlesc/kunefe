@@ -7,7 +7,7 @@
 | (1/5) code repository              | [![github repo badge](https://img.shields.io/badge/github-repo-000.svg?logo=github&labelColor=gray&color=blue)](https://github.com/mess-nlesc/kunefe) |
 | (2/5) license                      | [![github license badge](https://img.shields.io/github/license/mess-nlesc/kunefe)](https://github.com/mess-nlesc/kunefe) |
 | (3/5) community registry           | [![RSD](https://img.shields.io/badge/rsd-kunefe-00a3e3.svg)](https://www.research-software.nl/software/kunefe) [![workflow pypi badge](https://img.shields.io/pypi/v/kunefe.svg?colorB=blue)](https://pypi.python.org/project/kunefe/) |
-| (4/5) citation                     | [![DOI](https://zenodo.org/badge/764113803.svg)](https://zenodo.org/doi/10.5281/zenodo.10786467)
+| (4/5) citation                     | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10786467.svg)](https://zenodo.org/doi/10.5281/zenodo.10786467)
  | (5/5) checklist                    | [![workflow cii badge](https://bestpractices.coreinfrastructure.org/projects/<replace-with-created-project-identifier>/badge)](https://bestpractices.coreinfrastructure.org/projects/<replace-with-created-project-identifier>) |
 | howfairis                          | [![fair-software badge](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B-yellow)](https://fair-software.eu) |
 | **Other best practices**           | &nbsp; |

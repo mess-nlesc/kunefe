@@ -29,12 +29,6 @@ Kunefe is a Python package that helps users run containers on HPC systems. It ca
 | SonarCloud                         | [![sonarcloud](https://github.com/mess-nlesc/kunefe/actions/workflows/sonarcloud.yml/badge.svg)](https://github.com/mess-nlesc/kunefe/actions/workflows/sonarcloud.yml) |
 | MarkDown link checker              | [![markdown-link-check](https://github.com/mess-nlesc/kunefe/actions/workflows/markdown-link-check.yml/badge.svg)](https://github.com/mess-nlesc/kunefe/actions/workflows/markdown-link-check.yml) |
 
-## How to use kunefe
-
-A package to run containers on HPC systems
-
-The project setup is documented in [project_setup.md](project_setup.md). Feel free to remove this document (and/or the link to this document) if you don't need it.
-
 ## Installation
 
 To install kunefe from PyPI, run:
@@ -50,6 +44,10 @@ git clone git@github.com:mess-nlesc/kunefe.git
 cd kunefe
 python -m pip install .
 ```
+
+## The project setup
+
+The project setup is documented in [project_setup.md](project_setup.md). Feel free to remove this document (and/or the link to this document) if you don't need it.
 
 ## Documentation
 

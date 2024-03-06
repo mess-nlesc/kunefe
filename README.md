@@ -1,6 +1,14 @@
-## Badges
+# Kunefe
 
-(Customize these badges with your own links, and check https://shields.io/ or https://badgen.net/ to see which other badges are available.)
+Kunefe is a Python package that helps users run containers on HPC systems. It can:
+
+- convert Docker images into a Apptainer image
+- generate scripts for batch jobs
+- connect to a remote host via SSH and run commands
+- copy and retrieve files from a remote system
+
+
+## Badges
 
 | fair-software.eu recommendations | |
 | :-- | :--  |

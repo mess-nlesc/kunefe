@@ -250,26 +250,36 @@ class Kunefe:
         self, command: str, timeout: int = 5, flush: bool = False
     ) -> None:
         """Run a command on a remote system."""
-        transport = self.ssh_client.get_transport()
-        channel = transport.open_session()
-        channel.get_pty()
-        channel.settimeout(timeout)
-        channel.set_combine_stderr(True)
-        stdout = channel.makefile()
-        channel.exec_command(command)
+        # transport = self.ssh_client.get_transport()
+        # channel = transport.open_session()
+        # channel.get_pty()
+        # channel.settimeout(timeout)
+        # channel.set_combine_stderr(True)
+        # stdout = channel.makefile()
+        self.ssh_client.invoke_shell()
+        stdin, stdout, stderr = self.ssh_client.exec_command(
+            command=command,
+            timeout=timeout
+        )
 
-        stdout_lines = stdout.readlines()
-        for line in stdout_lines:
-            if flush:
-                print(line, end="", flush=True)
-            else:
-                print(line, end="")
+        # stdout_lines = stdout.readlines()
+        # for line in stdout_lines:
+        #     if flush:
+        #         print(line, end="", flush=True)
+        #     else:
+        #         print(line, end="")
 
-        # https://stackoverflow.com/a/11474509
-        if flush:
-            sys.stdout.write(
-                "\033[F" * len(stdout_lines)
-            )  # Cursor up for X number of lines
+        # # https://stackoverflow.com/a/11474509
+        # if flush:
+        #     sys.stdout.write(
+        #         "\033[F" * len(stdout_lines)
+        #     )  # Cursor up for X number of lines
+
+        # stdout_string = stdout.read().decode('ascii').strip("\n")
+
+        return [stdin.read().decode('ascii') if stdin.readable() else '',
+                stdout.read().decode('ascii') if stdout.readable() else '',
+                stderr.read().decode('ascii') if stderr.readable() else '']
 
     def watch_slurm_queue(self, sleep_time: float = 5.0) -> None:
         """Watches the SLURM job queue."""

@@ -48,7 +48,7 @@ def test_slurm_queue():
         ports={'22/tcp': 10022}
     )
 
-    sleep(120)
+    sleep(240)
     exit_code, output = container.exec_run(
         'squeue --all',
         stderr=True,

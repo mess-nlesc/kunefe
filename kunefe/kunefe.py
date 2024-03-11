@@ -73,13 +73,6 @@ class Kunefe:
         """Set the ssh and sftp clients."""
         # self.transport = self.set_transport()
         self.ssh_client = self.set_ssh_client()
-        # self.sftp_client = self.set_sftp_client()
-
-    def set_sftp_client(self) -> paramiko.SFTPClient:
-        """Creates a SFTP client."""
-        self.transport.connect(username=self.username, password=self.password)
-        sftp_client = paramiko.SFTPClient.from_transport(self.transport)
-        return sftp_client
 
     def connect_remote(self) -> None:
         """Connect to the remote host."""
@@ -223,13 +216,12 @@ class Kunefe:
         else:
             return False
 
-    def generate_job_file(
+    def generate_job_script(
         self,
         job_name: str,
         sif_file_path: str,
-        model_path: str,
-        experiment_name: str,
-        table_name: str,
+        command: str,
+        env_vars: str,
         job_time: str,
     ) -> None:
         """Generate batch script file for job submission."""
@@ -238,21 +230,21 @@ class Kunefe:
         environment = jinja2.Environment(
             loader=jinja2.FileSystemLoader(templates_folder)
         )
-        template = environment.get_template("job.jinja")
+        template = environment.get_template("generic_job.jinja")
 
         filename = f"{job_name}.sh"
         content = template.render(
             job_name=job_name,
             sif_file_path=sif_file_path,
             job_time=job_time,
-            model_path=model_path,
-            experiment_name=experiment_name,
-            table_name=table_name,
+            command=command,
+            env_vars=env_vars
         )
 
         with open(filename, mode="w", encoding="utf-8") as message:
             message.write(content)
             print(f"Batch job file was saved as {filename}")
+
 
     def run_remote_command(
         self, command: str, timeout: int = 5, flush: bool = False

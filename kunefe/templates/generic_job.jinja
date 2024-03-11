@@ -1,0 +1,12 @@
+{# templates/netlogo_job.jinja #}
+
+#!/bin/bash
+#SBATCH --job-name {{ job_name }}
+#SBATCH --output {{ job_name }}.out
+#SBATCH --error {{ job_name }}.err
+#SBATCH --time {{ job_time }}
+#SBATCH --mem=8GB
+#SBATCH --ntasks 1
+
+apptainer exec --env "{{ env_vars}}" \
+    {{ sif_file_path }} {{command}}

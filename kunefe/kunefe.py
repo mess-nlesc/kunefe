@@ -292,5 +292,5 @@ class Kunefe:
             time.sleep(sleep_time)
 
     def cleanup(self):
-        """Destructor method to clean things up"""
+        """Destructor method to clean things up."""
         print("Running cleanup...")

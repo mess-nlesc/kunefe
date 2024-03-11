@@ -12,5 +12,11 @@ print(f'stdin:\n{stdin}')
 print(f'stdout:\n{stdout}')
 print(f'stderr:\n{stderr}')
 
+# run 'ls' command for non-existent path
+stdin, stdout, stderr = kunefe.run_remote_command(command='ls /home/sweet/home')
+print(f'stdin:\n{stdin}')
+print(f'stdout:\n{stdout}')
+print(f'stderr:\n{stderr}')
+
 # # run 'ls'but clean the output
 # kunefe.run_remote_command(command='ls -la', flush=True)

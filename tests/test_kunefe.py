@@ -85,11 +85,8 @@ def test_connection_with_password(monkeypatch, slurm_service):
 
 # to only test this function run:
 # pytest --capture=no -v tests/test_kunefe.py::test_check_required_tools
-def test_check_required_tools(monkeypatch):
+def test_check_required_tools():
     """Test if required tools can be found."""
-    responses = iter(['javagat'])  # the default password
-    monkeypatch.setattr('getpass.getpass', lambda _: next(responses))
-
     kunefe = Kunefe(username="xenon", hostname="localhost", port=10022)
     requirements_status = kunefe.check_required_tools(['docker', 'rsync'])
     print(f'Requirements status: {requirements_status}')

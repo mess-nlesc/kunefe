@@ -4,6 +4,7 @@ Returns:
     _type_: _description_
 """
 
+import atexit
 import getpass
 import os
 import subprocess
@@ -48,6 +49,8 @@ class Kunefe:
         self.transport = None
         self.ssh_client = None
         self.sftp_client = None
+        atexit.register(self.cleanup)
+
 
     def set_password(self) -> str:
         """Sets user password."""
@@ -287,3 +290,7 @@ class Kunefe:
         while True:
             self.run_remote_command(command=command, timeout=5, flush=True)
             time.sleep(sleep_time)
+
+    def cleanup(self):
+        """Destructor method to clean things up"""
+        print("Running cleanup...")

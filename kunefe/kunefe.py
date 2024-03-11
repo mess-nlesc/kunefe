@@ -66,13 +66,14 @@ class Kunefe:
         """Creates an SSH client and connects to remote server."""
         ssh_client = paramiko.SSHClient()
         ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        ssh_client.connect(
-            hostname=self.hostname,
-            port=self.port,
-            username=self.username,
-            password=self.password,
-        )
         return ssh_client
+
+
+    def set_clients(self) -> None:
+        """Set the ssh and sftp clients."""
+        # self.transport = self.set_transport()
+        self.ssh_client = self.set_ssh_client()
+        # self.sftp_client = self.set_sftp_client()
 
     def set_sftp_client(self) -> paramiko.SFTPClient:
         """Creates a SFTP client."""
@@ -81,11 +82,16 @@ class Kunefe:
         return sftp_client
 
     def connect_remote(self) -> None:
-        """Set the password and clients and connect to the host."""
+        """Connect to the remote host."""
+        self.set_clients()
         self.password = self.set_password()
-        self.transport = self.set_transport()
-        self.ssh_client = self.set_ssh_client()
-        self.sftp_client = self.set_sftp_client()
+        self.ssh_client.connect(
+            hostname=self.hostname,
+            port=self.port,
+            username=self.username,
+            password=self.password,
+        )
+        self.sftp_client = self.ssh_client.open_sftp()
 
     def create_remote_folder(self, remote_folder: str) -> None:
         """Create a folder in the remote server."""

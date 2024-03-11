@@ -30,6 +30,7 @@ def test_docker_start():
     # container.wait()
     container.stop()
     container.remove(force=True)
+
     assert container_state['Status'] == 'created'
     # assert container.status == ['created', 'running'], 'container is not created or running'
 
@@ -55,7 +56,7 @@ def test_slurm_queue():
         stdout=True
     )
 
-    assert exit_code == 0, output
-
     container.stop()
     container.remove(force=True)
+
+    assert exit_code == 0, output

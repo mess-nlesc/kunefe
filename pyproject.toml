@@ -167,7 +167,7 @@ per-file-ignores = {}
 # Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
-target-version = "py39"
+target-version = "py311"
 line-length = 120
 
 [tool.ruff.isort]

@@ -34,15 +34,5 @@ kunefe = Kunefe(username="xenon", hostname="localhost", port=10022)
 # image_build_status = kunefe.build_apptainer_image(netlogo_version='6.3.0')
 # print(f'Image build status: {image_build_status}')
 
-# # generate a slurm job file
-# kunefe.generate_job_file(
-#     job_name='kunefe_experiment_job',
-#     model_path="/home/model/path",
-#     sif_file_path="/home/xenon/netlogo_6.3.0.sif",
-#     experiment_name="test_experiment",
-#     table_name="table_name",
-#     job_time='0:30:00',
-# )
-
 # # watch the slurm queue
 # kunefe.watch_slurm_queue()

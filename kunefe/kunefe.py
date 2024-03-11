@@ -7,7 +7,6 @@ Returns:
 import getpass
 import os
 import subprocess
-import sys
 import time
 from shutil import which
 from stat import S_ISDIR
@@ -223,6 +222,7 @@ class Kunefe:
         command: str,
         env_vars: str,
         job_time: str,
+        template_name: str = 'generic'
     ) -> None:
         """Generate batch script file for job submission."""
         parent_dir = os.path.dirname(__file__)
@@ -230,7 +230,7 @@ class Kunefe:
         environment = jinja2.Environment(
             loader=jinja2.FileSystemLoader(templates_folder)
         )
-        template = environment.get_template("generic_job.jinja")
+        template = environment.get_template(f"{template_name}_job.jinja")
 
         filename = f"{job_name}.sh"
         content = template.render(

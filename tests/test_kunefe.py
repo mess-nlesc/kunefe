@@ -95,11 +95,8 @@ def test_check_required_tools():
 
 # to only test this function run:
 # pytest --capture=no -v tests/test_kunefe.py::test_check_required_tools_fail
-def test_check_required_tools_fail(monkeypatch):
+def test_check_required_tools_fail():
     """Test if check_required_tools fails for a command that does not exist."""
-    responses = iter(['javagat'])  # the default password
-    monkeypatch.setattr('getpass.getpass', lambda _: next(responses))
-
     kunefe = Kunefe(username="xenon", hostname="localhost", port=10022)
     requirements_status = kunefe.check_required_tools(['docker', 'rsync', 'bsxcommand'])
     print(f'Requirements status: {requirements_status}')

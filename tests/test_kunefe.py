@@ -103,16 +103,21 @@ def test_check_required_tools_fail():
     assert requirements_status is False, 'should fail for bsxcommand'
 
 
-# def test_generate_job_file():
-#     """Test generate_job_file
+# def test_generate_job_script():
+#     """Test generate_job_script
 #     """
 #     pass
 
 
-# def test_run_remote_command():
-#     """Test run_remote_command
-#     """
-#     pass
+def test_run_remote_command(monkeypatch, slurm_service):
+    """Test if a command runs succesfully on the remote system."""
+    responses = iter(['javagat'])  # the default password
+    monkeypatch.setattr('getpass.getpass', lambda _: next(responses))
+    kunefe = Kunefe(username="xenon", hostname="localhost", port=10022)
+    kunefe.connect_remote()
+    _, stdout, stderr = kunefe.run_remote_command(command='ls /home/xenon')
+    assert stderr == '', 'there was an error'
+    assert stdout == 'filesystem-test-fixture\ntest-slurm.job\n', 'the command output does not match'
 
 
 # def test_watch_slurm_queue():

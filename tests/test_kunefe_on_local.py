@@ -13,7 +13,7 @@ def generic_job_sample_file():
         return data
 
 
-@pytest.mark.skipif(IN_GITHUB_ACTIONS, reason="Skipping the test: Test does not work in Github Actions.")
+#@pytest.mark.skipif(IN_GITHUB_ACTIONS, reason="Skipping the test: Test does not work in Github Actions.")
 def test_build_apptainer_image(tmp_path):
     """Test build_apptainer_image."""
     print(f'\nworkdir: {tmp_path}')
@@ -24,7 +24,7 @@ def test_build_apptainer_image(tmp_path):
     )
 
 
-@pytest.mark.skipif(IN_GITHUB_ACTIONS, reason="Skipping the test: Test does not work in Github Actions.")
+#@pytest.mark.skipif(IN_GITHUB_ACTIONS, reason="Skipping the test: Test does not work in Github Actions.")
 def test_build_apptainer_image_fail(tmp_path):
     """Test build_apptainer_image."""
     print(f'\nworkdir: {tmp_path}')

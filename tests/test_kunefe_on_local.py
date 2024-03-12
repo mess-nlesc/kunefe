@@ -1,5 +1,14 @@
 """Tests local functions of kunefe."""
+import pytest
 from kunefe import Kunefe
+
+
+@pytest.fixture
+def generic_job_sample_file():
+    """Test Employee Fixture."""
+    with open("tests/data/kunefe_generic_job.sh", mode="r", encoding="utf-8") as file:
+        data = file.read().rstrip()
+        return data
 
 
 def test_build_apptainer_image(tmp_path):
@@ -59,3 +68,28 @@ def test_check_required_tools_fail():
     requirements_status = kunefe.check_required_tools(['docker', 'rsync', 'bsxcommand'])
     print(f'Requirements status: {requirements_status}')
     assert requirements_status is False, 'should fail for bsxcommand'
+
+
+# https://docs.pytest.org/en/7.1.x/how-to/tmp_path.html
+def test_generate_job_script(tmp_path, generic_job_sample_file):
+    """Test generate_job_script."""
+    print(f'\nworkdir: {tmp_path}')
+    # print(generic_job_sample_file)
+
+    kunefe = Kunefe(username="xenon", hostname="localhost", port=10022)
+    kunefe.generate_job_script(
+        job_name='pytest_job',
+        sif_file_path="/home/xenon/myapp_0.1.0.sif",
+        command="ls /home/xenon",
+        env_vars="PATH=$PATH:/home/xenon",
+        job_time='0:30:00',
+        job_file_path=tmp_path
+    )
+
+    generated_file_content = None
+    generated_file_path = f"{tmp_path}/pytest_job.sh"
+    with open(generated_file_path, mode="r", encoding="utf-8") as file:
+        generated_file_content = file.read().rstrip()
+    # print(generated_file_content)
+
+    assert generic_job_sample_file == generated_file_content

@@ -8,6 +8,11 @@ def test_check_local_command_exists():
     assert kunefe.check_local_command_exists(command='ls')
 
 
+def test_check_local_command_exists_fail():
+    """Test check_local_command_exists."""
+    kunefe = Kunefe(username="xenon", hostname="localhost", port=10022)
+    assert not kunefe.check_local_command_exists(command='thisdoesnotexist')
+
 
 # to only test this function run:
 # pytest --capture=no -v tests/test_kunefe.py::test_check_required_tools

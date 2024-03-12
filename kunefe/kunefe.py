@@ -290,6 +290,6 @@ class Kunefe:
             self.run_remote_command(command=command, timeout=5, flush=True)
             time.sleep(sleep_time)
 
-    def cleanup(self):  # pragma: no cover
+    def cleanup(self) -> None:  # pragma: no cover
         """Destructor method to clean things up."""
         print("Running cleanup...")

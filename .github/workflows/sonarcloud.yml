@@ -27,6 +27,14 @@ jobs:
         run: |
           which python
           python --version
+      - uses: eWaterCycle/setup-apptainer@v2
+        with:
+          apptainer-version: 1.2.5
+      - name: Apptainer info
+        shell: bash -e {0}
+        run: |
+          which apptainer
+          apptainer version
       - name: Install dependencies
         run: python -m pip install .[dev]
       - name: Run unit tests with coverage

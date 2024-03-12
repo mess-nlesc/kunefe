@@ -51,7 +51,6 @@ class Kunefe:
         self.sftp_client = None
         atexit.register(self.cleanup)
 
-
     def set_password(self) -> str:
         """Sets user password."""
         password = getpass.getpass(
@@ -69,7 +68,6 @@ class Kunefe:
         ssh_client = paramiko.SSHClient()
         ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         return ssh_client
-
 
     def set_clients(self) -> None:
         """Set the ssh and sftp clients."""
@@ -89,14 +87,23 @@ class Kunefe:
         self.sftp_client = self.ssh_client.open_sftp()
 
     def create_remote_folder(self, remote_folder: str) -> None:
-        """Create a folder in the remote server."""
+        """Create a folder in the remote server.
+
+        Args:
+            remote_folder (str): _description_
+        """
         try:
             self.sftp_client.mkdir(remote_folder)
         except IOError:
             print(f"(assuming {remote_folder}/ already exists)")
 
     def get_files(self, remote_folder: str, local_folder: str = "./") -> None:
-        """Get files from the remote server."""
+        """Get files from the remote server.
+
+        Args:
+            remote_folder (str): _description_
+            local_folder (str, optional): _description_. Defaults to "./".
+        """
         if not os.path.exists(local_folder):
             os.mkdir(local_folder)
 
@@ -178,7 +185,14 @@ class Kunefe:
                     )
 
     def submit_job(self, job_file: str) -> None:
-        """Submit job to SLURM cluster."""
+        """Submit job to SLURM cluster.
+
+        Args:
+            job_file (str): _description_
+
+        Returns:
+            _type_: _description_
+        """
         stdin, stdout, stderr = self.ssh_client.exec_command(
             f"sbatch {job_file}"
         )
@@ -187,7 +201,15 @@ class Kunefe:
         return job_id, stdin, stdout, stderr
 
     def build_apptainer_image(self, docker_image: str, sif_file_name: str = 'app.sif') -> bool:
-        """Builds an apptainer image from a Docker image."""
+        """Builds an apptainer image from a Docker image.
+
+        Args:
+            docker_image (str): _description_
+            sif_file_name (str, optional): _description_. Defaults to 'app.sif'.
+
+        Returns:
+            bool: _description_
+        """
         build_command = f"apptainer pull {sif_file_name} docker://{docker_image}"
 
         process = subprocess.Popen(build_command, shell=True)
@@ -204,11 +226,25 @@ class Kunefe:
             return False
 
     def check_local_command_exists(self, command: str) -> bool:
-        """Check whether `command` is on PATH and marked as executable."""
+        """Check whether `command` is on PATH and marked as executable.
+
+        Args:
+            command (str): _description_
+
+        Returns:
+            bool: _description_
+        """
         return which(command) is not None
 
     def check_required_tools(self, command_list: list[str]) -> bool:
-        """Check whether all required commands are available."""
+        """Check whether all required commands are available.
+
+        Args:
+            command_list (list[str]): _description_
+
+        Returns:
+            bool: _description_
+        """
         # TODO: also check the required versions
         if all(self.check_local_command_exists(command) for command in command_list):
             print("Have all the required external tools.")
@@ -226,7 +262,17 @@ class Kunefe:
         job_file_path: str = './',
         template_name: str = 'generic'
     ) -> None:
-        """Generate batch script file for job submission."""
+        """Generate batch script file for job submission.
+
+        Args:
+            job_name (str): _description_
+            sif_file_path (str): _description_
+            command (str): _description_
+            env_vars (str): _description_
+            job_time (str): _description_
+            job_file_path (str, optional): _description_. Defaults to './'.
+            template_name (str, optional): _description_. Defaults to 'generic'.
+        """
         parent_dir = os.path.dirname(__file__)
         templates_folder = os.path.join(parent_dir, "templates")
         environment = jinja2.Environment(
@@ -247,11 +293,19 @@ class Kunefe:
             message.write(content)
             print(f"Batch job file was saved as {filename}")
 
-
     def run_remote_command(
         self, command: str, timeout: int = 5, flush: bool = False
     ) -> None:
-        """Run a command on a remote system."""
+        """Run a command on a remote system.
+
+        Args:
+            command (str): _description_
+            timeout (int, optional): _description_. Defaults to 5.
+            flush (bool, optional): _description_. Defaults to False.
+
+        Returns:
+            _type_: _description_
+        """
         # transport = self.ssh_client.get_transport()
         # channel = transport.open_session()
         # channel.get_pty()
@@ -284,7 +338,11 @@ class Kunefe:
                 stderr.read().decode('ascii') if stderr.readable() else '']
 
     def watch_slurm_queue(self, sleep_time: float = 5.0) -> None:  # pragma: no cover
-        """Watches the SLURM job queue."""
+        """Watches the SLURM job queue.
+
+        Args:
+            sleep_time (float, optional): _description_. Defaults to 5.0.
+        """
         command = 'squeue --all'
         while True:
             self.run_remote_command(command=command, timeout=5, flush=True)

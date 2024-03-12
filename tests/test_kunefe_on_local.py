@@ -2,6 +2,16 @@
 from kunefe import Kunefe
 
 
+def test_build_apptainer_image(tmp_path):
+    """Test build_apptainer_image."""
+    print(f'\nworkdir: {tmp_path}')
+    kunefe = Kunefe(username="xenon", hostname="localhost", port=10022)
+    assert kunefe.build_apptainer_image(
+        docker_image='comses/netlogo:6.3.0',
+        sif_file_name=f'{tmp_path}/netlogo_6.3.0.sif'
+    )
+
+
 def test_check_local_command_exists():
     """Test check_local_command_exists."""
     kunefe = Kunefe(username="xenon", hostname="localhost", port=10022)

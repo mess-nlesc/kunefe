@@ -223,6 +223,7 @@ class Kunefe:
         command: str,
         env_vars: str,
         job_time: str,
+        job_file_path: str = './',
         template_name: str = 'generic'
     ) -> None:
         """Generate batch script file for job submission."""
@@ -233,7 +234,7 @@ class Kunefe:
         )
         template = environment.get_template(f"{template_name}_job.jinja")
 
-        filename = f"{job_name}.sh"
+        filename = f"{job_file_path}/{job_name}.sh"
         content = template.render(
             job_name=job_name,
             sif_file_path=sif_file_path,

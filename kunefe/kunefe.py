@@ -283,13 +283,13 @@ class Kunefe:
                 stdout.read().decode('ascii') if stdout.readable() else '',
                 stderr.read().decode('ascii') if stderr.readable() else '']
 
-    def watch_slurm_queue(self, sleep_time: float = 5.0) -> None:
+    def watch_slurm_queue(self, sleep_time: float = 5.0) -> None:  # pragma: no cover
         """Watches the SLURM job queue."""
         command = 'squeue --all'
         while True:
             self.run_remote_command(command=command, timeout=5, flush=True)
             time.sleep(sleep_time)
 
-    def cleanup(self):
+    def cleanup(self):  # pragma: no cover
         """Destructor method to clean things up."""
         print("Running cleanup...")

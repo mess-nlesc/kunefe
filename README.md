@@ -20,6 +20,14 @@ Kunefe is a Python package that helps users run containers on HPC systems. It ca
 | Supported Python versions             | [![PyPI pyversions](https://img.shields.io/pypi/pyversions/kunefe.svg)](https://pypi.python.org/pypi/kunefe/) |
 | Supported Operating systems | ![](https://img.shields.io/badge/windows(wsl)%20%7C%20macos%20%7C%20linux-grey) |
 
+<details>
+<summary>
+  <span style="font-size:1.2em; font-weight: bold;">
+    Click to see all the badges
+  </span>
+</summary>
+<br>
+
 | Code quality | |
 | :-- | :--  |
 | Static analysis                    | [![workflow scq badge](https://sonarcloud.io/api/project_badges/measure?project=mess-nlesc_kunefe&metric=alert_status)](https://sonarcloud.io/dashboard?id=mess-nlesc_kunefe) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=mess-nlesc_kunefe&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=mess-nlesc_kunefe) [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=mess-nlesc_kunefe&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=mess-nlesc_kunefe) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=mess-nlesc_kunefe&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=mess-nlesc_kunefe) [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=mess-nlesc_kunefe&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=mess-nlesc_kunefe) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=mess-nlesc_kunefe&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=mess-nlesc_kunefe) [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=mess-nlesc_kunefe&metric=bugs)](https://sonarcloud.io/summary/new_code?id=mess-nlesc_kunefe) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=mess-nlesc_kunefe&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=mess-nlesc_kunefe) [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=mess-nlesc_kunefe&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=mess-nlesc_kunefe) |
@@ -43,6 +51,8 @@ Kunefe is a Python package that helps users run containers on HPC systems. It ca
 | (3/5) community registry           | [![RSD](https://img.shields.io/badge/rsd-kunefe-00a3e3.svg)](https://www.research-software.nl/software/kunefe) [![workflow pypi badge](https://img.shields.io/pypi/v/kunefe.svg?colorB=blue)](https://pypi.python.org/project/kunefe/) |
 | (4/5) citation                     | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10786467.svg)](https://zenodo.org/doi/10.5281/zenodo.10786467)
  | (5/5) checklist                    | [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/8629/badge)](https://www.bestpractices.dev/projects/8629) |
+
+</details>
 
 ## Installation
 

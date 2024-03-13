@@ -8,17 +8,24 @@ Kunefe is a Python package that helps users run containers on HPC systems. It ca
 - connect to a remote host via SSH and run commands
 - copy and retrieve files from a remote system
 
+## Requirements
+
+- [Docker](https://docs.docker.com/engine/install/)
+- [Apptainer](https://apptainer.org/docs/admin/main/installation.html)
+
 ## Badges
 
 | General | |
 | :-- | :--  |
 | Supported Python versions             | [![PyPI pyversions](https://img.shields.io/pypi/pyversions/kunefe.svg)](https://pypi.python.org/pypi/kunefe/) |
+| Supported Operating systems | ![](https://img.shields.io/badge/windows(wsl)%20%7C%20macos%20%7C%20linux-grey) |
 
 | Code quality | |
 | :-- | :--  |
 | Static analysis                    | [![workflow scq badge](https://sonarcloud.io/api/project_badges/measure?project=mess-nlesc_kunefe&metric=alert_status)](https://sonarcloud.io/dashboard?id=mess-nlesc_kunefe) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=mess-nlesc_kunefe&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=mess-nlesc_kunefe) [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=mess-nlesc_kunefe&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=mess-nlesc_kunefe) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=mess-nlesc_kunefe&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=mess-nlesc_kunefe) [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=mess-nlesc_kunefe&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=mess-nlesc_kunefe) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=mess-nlesc_kunefe&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=mess-nlesc_kunefe) [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=mess-nlesc_kunefe&metric=bugs)](https://sonarcloud.io/summary/new_code?id=mess-nlesc_kunefe) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=mess-nlesc_kunefe&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=mess-nlesc_kunefe) [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=mess-nlesc_kunefe&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=mess-nlesc_kunefe) |
 | Coverage                           | [![workflow scc badge](https://sonarcloud.io/api/project_badges/measure?project=mess-nlesc_kunefe&metric=coverage)](https://sonarcloud.io/dashboard?id=mess-nlesc_kunefe) |
 | Documentation                      | [![Documentation Status](https://readthedocs.org/projects/kunefe/badge/?version=latest)](https://kunefe.readthedocs.io/en/latest/?badge=latest) |
+| Unit tests                              | [![build](https://github.com/mess-nlesc/kunefe/actions/workflows/tests.yml/badge.svg)](https://github.com/mess-nlesc/kunefe/actions/workflows/tests.yml) |
 
 | **GitHub Actions**                 | &nbsp; |
 | :-- | :--  |

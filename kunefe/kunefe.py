@@ -62,13 +62,9 @@ class Kunefe:
         ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         return ssh_client
 
-    def set_clients(self) -> None:
-        """Set the ssh and sftp clients."""
-        self.ssh_client = self.set_ssh_client()
-
     def connect_remote(self) -> None:
         """Connect to the remote host."""
-        self.set_clients()
+        self.set_ssh_client()
         self.password = self.set_password()
         self.ssh_client.connect(
             hostname=self.hostname,

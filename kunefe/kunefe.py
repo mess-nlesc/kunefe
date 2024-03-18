@@ -57,7 +57,7 @@ class Kunefe:
         return password
 
     def set_ssh_client(self) -> paramiko.SSHClient:
-        """Creates an SSH client and connects to remote server."""
+        """Creates an SSH client and connects to remote system."""
         ssh_client = paramiko.SSHClient()
         ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         return ssh_client
@@ -75,10 +75,10 @@ class Kunefe:
         self.sftp_client = self.ssh_client.open_sftp()
 
     def create_remote_folder(self, remote_folder: str) -> None:
-        """Create a folder in the remote server.
+        """Create a folder in the remote system.
 
         Args:
-            remote_folder (str): _description_
+            remote_folder (str): path of the folder to be created on the remote system.
         """
         try:
             self.sftp_client.mkdir(remote_folder)

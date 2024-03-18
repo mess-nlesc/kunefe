@@ -46,7 +46,6 @@ class Kunefe:
         self.hostname = hostname
         self.port = port
         self.password = None
-        self.transport = None
         self.ssh_client = None
         self.sftp_client = None
         atexit.register(self.cleanup)
@@ -58,11 +57,6 @@ class Kunefe:
         )
         return password
 
-    def set_transport(self) -> paramiko.Transport:
-        """Creates an paramiko transport."""
-        transport = paramiko.Transport((self.hostname, self.port))
-        return transport
-
     def set_ssh_client(self) -> paramiko.SSHClient:
         """Creates an SSH client and connects to remote server."""
         ssh_client = paramiko.SSHClient()
@@ -71,7 +65,6 @@ class Kunefe:
 
     def set_clients(self) -> None:
         """Set the ssh and sftp clients."""
-        # self.transport = self.set_transport()
         self.ssh_client = self.set_ssh_client()
 
     def connect_remote(self) -> None:

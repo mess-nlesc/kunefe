@@ -341,7 +341,10 @@ class Kunefe:
         """Watches the SLURM job queue.
 
         Args:
-            sleep_time (float, optional): _description_. Defaults to 5.0.
+            sleep_time (float, optional): time to wait before refreshing the queue status. Defaults to 5.0.
+
+        Returns:
+            None
         """
         command = 'squeue --all'
         while True:
@@ -349,5 +352,9 @@ class Kunefe:
             time.sleep(sleep_time)
 
     def cleanup(self) -> None:  # pragma: no cover
-        """Destructor method to clean things up."""
+        """Destructor method to clean things up.
+
+        Returns:
+            None
+        """
         print("Running cleanup...")

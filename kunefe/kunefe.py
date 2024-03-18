@@ -135,7 +135,7 @@ class Kunefe:
         local_folder: str = "./",
         verbose: bool = False,
     ) -> None:
-        """Copy files to the remote server.
+        """Copy files to the remote system.
 
         Args:
             remote_folder (str): path on a remote system to copy the files to.
@@ -299,12 +299,12 @@ class Kunefe:
         """Run a command on a remote system.
 
         Args:
-            command (str): _description_
-            timeout (int, optional): _description_. Defaults to 5.
-            flush (bool, optional): _description_. Defaults to False.
+            command (str): command to be executed on the remote system.
+            timeout (int, optional): time to wait before considering the command as failed. Defaults to 5.
+            flush (bool, optional): flush the output. Defaults to False.
 
         Returns:
-            _type_: _description_
+            None
         """
         # transport = self.ssh_client.get_transport()
         # channel = transport.open_session()

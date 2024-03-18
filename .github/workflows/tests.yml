@@ -44,7 +44,9 @@ jobs:
       - name: Run unit tests on Linux
         run: |
           python -m pytest -v
-
+      - name: Check static typing
+        run: |
+          mypy --install-types --extra-checks  --strict  kunefe
 
   lint:
     name: Linting build

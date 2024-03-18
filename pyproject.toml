@@ -53,7 +53,9 @@ dev = [
     "sphinx-autoapi",
     "tox",
     "myst_parser",
-    "docker"
+    "mypy",
+    "docker",
+    "types-paramiko"
 ]
 publishing = [
     "build",

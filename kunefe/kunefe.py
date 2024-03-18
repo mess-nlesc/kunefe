@@ -269,6 +269,9 @@ class Kunefe:
             job_time (str): time limit for the job.
             job_file_path (str, optional): path to save the generated batch job script. Defaults to './'.
             template_name (str, optional): name of the template to be used. Defaults to 'generic'.
+
+        Returns:
+            None
         """
         parent_dir = os.path.dirname(__file__)
         templates_folder = os.path.join(parent_dir, "templates")

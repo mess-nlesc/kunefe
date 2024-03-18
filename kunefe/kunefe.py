@@ -237,10 +237,10 @@ class Kunefe:
         """Check whether all required commands are available.
 
         Args:
-            command_list (list[str]): _description_
+            command_list (list[str]): a list of tools to be checked
 
         Returns:
-            bool: _description_
+            bool: True if all the tools exist. Otherwise False.
         """
         # TODO: also check the required versions
         if all(self.check_local_command_exists(command) for command in command_list):

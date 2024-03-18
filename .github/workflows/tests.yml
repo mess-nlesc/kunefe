@@ -1,4 +1,4 @@
-name: build
+name: tests
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 jobs:
 
   test:
-    name: Build for (${{ matrix.python-version }}, ${{ matrix.os }})
+    name: Tests for (${{ matrix.python-version }}, ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false

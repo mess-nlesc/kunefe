@@ -226,10 +226,10 @@ class Kunefe:
         """Check whether `command` is on PATH and marked as executable.
 
         Args:
-            command (str): _description_
+            command (str): a command to be checked
 
         Returns:
-            bool: _description_
+            bool: True if command exists, otherwise False
         """
         return which(command) is not None
 

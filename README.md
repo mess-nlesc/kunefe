@@ -15,11 +15,13 @@ Kunefe is a Python package that helps users run containers on HPC systems. It ca
 
 ## Badges
 
-| General | |
-| :-- | :--  |
-| Supported Python versions             | [![PyPI pyversions](https://img.shields.io/pypi/pyversions/kunefe.svg)](https://pypi.python.org/pypi/kunefe/) |
-| Supported Operating systems | ![](https://img.shields.io/badge/windows(wsl)%20%7C%20macos%20%7C%20linux-grey) |
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/kunefe.svg)](https://pypi.python.org/pypi/kunefe/)
+![](https://img.shields.io/badge/windows%20%7C%20macos%20%7C%20linux-grey)
+[![Checked with mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 
+<!-- [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![pydocstyle](https://img.shields.io/badge/pydocstyle-enabled-AD4CD3)](http://www.pydocstyle.org/en/stable/) -->
 
 <details>
 <summary>

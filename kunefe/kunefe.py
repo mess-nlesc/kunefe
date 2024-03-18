@@ -120,21 +120,12 @@ class Kunefe:
         """Copy files to the remote server.
 
         Args:
-            remote_folder (str): Path on a remote system to copy the files or folders
-            local_folder (str): File or a folder name to copy
-            verbose (bool):Show verbose info.
+            remote_folder (str): path on a remote system to copy the files to
+            local_folder (str): path to copy the files from
+            verbose (bool): show verbose info when copying.
 
         Returns:
             None
-
-        Raises:
-            TODO: ValueError: If `name` is equal to `nobody`
-
-        Example:
-            This function can be called with `Jane Smith` as argument using
-
-            # >>> from kunefe.my_module import kunefe
-            # >>> put_files(remote_folder="/home/xenon/", local_folder="./test_folder")
         """
         if remote_folder == "~":
             remote_folder = os.path.expanduser("~")

@@ -86,11 +86,11 @@ class Kunefe:
             print(f"(assuming {remote_folder}/ already exists)")
 
     def get_files(self, remote_folder: str, local_folder: str = "./") -> None:
-        """Get files from the remote server.
+        """Get files from the remote system.
 
         Args:
-            remote_folder (str): _description_
-            local_folder (str, optional): _description_. Defaults to "./".
+            remote_folder (str): path of the remote folder to copy the files from.
+            local_folder (str, optional): path of the host folder to copy the files to. Defaults to "./".
         """
         if not os.path.exists(local_folder):
             os.mkdir(local_folder)

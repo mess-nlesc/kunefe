@@ -24,21 +24,21 @@ class Kunefe:
     """Submit jobs to SLURM cluster.
 
     Attributes:
-        username (str): login name of the user
-        hostname (str): hostname or the IP address of the remote system
-        port (int): SSH port to be used by the clients
-        password (int): password to connect to the remote
-        ssh_client: ssh client to connect and run commands on the remote system
-        sftp_client: sftp client to copy files from and to a remote system
+        username (str): login name of the user.
+        hostname (str): hostname or the IP address of the remote system.
+        port (int): SSH port to be used by the clients.
+        password (int): password to connect to the remote.
+        ssh_client: ssh client to connect and run commands on the remote system.
+        sftp_client: sftp client to copy files from and to a remote system.
     """
 
     def __init__(self, username: str, hostname: str, port: int) -> None:
         """Initialize Kunefe class with username, hostname and port.
 
         Args:
-            username (str): login name of the user
-            hostname (str): hostname or the IP address of the remote system
-            port (int): SSH port to be used by the clients
+            username (str): login name of the user.
+            hostname (str): hostname or the IP address of the remote system.
+            port (int): SSH port to be used by the clients.
 
         """
         self.username = username
@@ -50,20 +50,32 @@ class Kunefe:
         atexit.register(self.cleanup)
 
     def set_password(self) -> str:
-        """Sets user password. The password is not echoed."""
+        """Sets user password. The password is not echoed.
+
+        Returns:
+            password (str): password of the user
+        """
         password = getpass.getpass(
             f"password for {self.username}@{self.hostname}: "
         )
         return password
 
     def set_ssh_client(self) -> paramiko.SSHClient:
-        """Creates an SSH client and connects to remote system."""
+        """Creates an SSH client and connects to remote system.
+
+        Returns:
+            ssh_client (paramiko.SSHClient): ssh client
+        """
         ssh_client = paramiko.SSHClient()
         ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         return ssh_client
 
     def connect_remote(self) -> None:
-        """Creates an ssh and sftp clients, prompts for user password and connects to the remote host."""
+        """Creates an ssh and sftp clients, prompts for user password and connects to the remote host.
+
+        Returns:
+            None
+        """
         self.set_ssh_client()
         self.password = self.set_password()
         self.ssh_client.connect(
@@ -79,6 +91,9 @@ class Kunefe:
 
         Args:
             remote_folder (str): path of the folder to be created on the remote system.
+
+        Returns:
+            None
         """
         try:
             self.sftp_client.mkdir(remote_folder)
@@ -91,6 +106,9 @@ class Kunefe:
         Args:
             remote_folder (str): path of the remote folder to copy the files from.
             local_folder (str, optional): path of the host folder to copy the files to. Defaults to "./".
+
+        Returns:
+            None
         """
         if not os.path.exists(local_folder):
             os.mkdir(local_folder)
@@ -120,8 +138,8 @@ class Kunefe:
         """Copy files to the remote server.
 
         Args:
-            remote_folder (str): path on a remote system to copy the files to
-            local_folder (str): path to copy the files from
+            remote_folder (str): path on a remote system to copy the files to.
+            local_folder (str): path to copy the files from.
             verbose (bool): show verbose info when copying.
 
         Returns:
@@ -167,10 +185,10 @@ class Kunefe:
         """Submit job to SLURM cluster.
 
         Args:
-            job_file (str): _description_
+            job_file (str): full path of the job script to be submitted.
 
         Returns:
-            _type_: _description_
+            None
         """
         stdin, stdout, stderr = self.ssh_client.exec_command(
             f"sbatch {job_file}"

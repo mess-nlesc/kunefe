@@ -50,7 +50,7 @@ class Kunefe:
         atexit.register(self.cleanup)
 
     def set_password(self) -> str:
-        """Sets user password."""
+        """Sets user password. The password is not echoed."""
         password = getpass.getpass(
             f"password for {self.username}@{self.hostname}: "
         )

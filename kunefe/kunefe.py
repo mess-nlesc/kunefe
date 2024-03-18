@@ -23,24 +23,23 @@ paramiko.util.log_to_file(DEFAULT_LOG_FILENAME)
 class Kunefe:
     """Submit jobs to SLURM cluster.
 
-    Args:
-        username:
-        hostname:
-        port:
-
     Attributes:
-        username (str):
-        hostname (str):
-        port (int):
+        username (str): login name of the user
+        hostname (str): hostname or the IP address of the remote system
+        port (int): SSH port to be used by the clients
+        password (int): password to connect to the remote
+        ssh_client: ssh client to connect and run commands on the remote system
+        sftp_client: sftp client to copy files from and to a remote system
     """
 
     def __init__(self, username: str, hostname: str, port: int) -> None:
-        """_summary_.
+        """Initialize Kunefe class with username, hostname and port.
 
         Args:
-            username (str): _description_
-            hostname (str): _description_
-            port (int): _description_
+            username (str): login name of the user
+            hostname (str): hostname or the IP address of the remote system
+            port (int): SSH port to be used by the clients
+
         """
         self.username = username
         self.hostname = hostname

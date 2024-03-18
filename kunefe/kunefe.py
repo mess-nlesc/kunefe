@@ -198,14 +198,14 @@ class Kunefe:
         return job_id, stdin, stdout, stderr
 
     def build_apptainer_image(self, docker_image: str, sif_file_name: str = 'app.sif') -> bool:
-        """Builds an apptainer image from a Docker image.
+        """Builds an Apptainer image from a Docker image.
 
         Args:
-            docker_image (str): _description_
-            sif_file_name (str, optional): _description_. Defaults to 'app.sif'.
+            docker_image (str): docker image name to be used to build an apptainer image
+            sif_file_name (str, optional): name of the apptainer image (sif) to be built. Defaults to 'app.sif'.
 
         Returns:
-            bool: _description_
+            bool: True if the apptainer image was successfully built. Otherwise, returns False
         """
         build_command = f"apptainer pull {sif_file_name} docker://{docker_image}"
 

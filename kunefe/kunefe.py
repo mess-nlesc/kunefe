@@ -156,7 +156,7 @@ class Kunefe:
             print(f"local_folder_basename: {local_folder_basename}")
 
         for dirpath, dirnames, filenames in os.walk(local_folder):
-            file_dirpath = dirpath[len(local_folder) + 1 :]
+            file_dirpath = dirpath[len(local_folder) + 1:]
             remote_path = os.path.join(
                 remote_folder, local_folder_basename, file_dirpath
             )
@@ -201,11 +201,11 @@ class Kunefe:
         """Builds an Apptainer image from a Docker image.
 
         Args:
-            docker_image (str): docker image name to be used to build an apptainer image
+            docker_image (str): docker image name to be used to build an apptainer image.
             sif_file_name (str, optional): name of the apptainer image (sif) to be built. Defaults to 'app.sif'.
 
         Returns:
-            bool: True if the apptainer image was successfully built. Otherwise, returns False
+            bool: True if the apptainer image was successfully built. Otherwise, returns False.
         """
         build_command = f"apptainer pull {sif_file_name} docker://{docker_image}"
 
@@ -226,10 +226,10 @@ class Kunefe:
         """Check whether `command` is on PATH and marked as executable.
 
         Args:
-            command (str): a command to be checked
+            command (str): a command to be checked.
 
         Returns:
-            bool: True if command exists, otherwise False
+            bool: True if command exists. Otherwise False.
         """
         return which(command) is not None
 
@@ -237,7 +237,7 @@ class Kunefe:
         """Check whether all required commands are available.
 
         Args:
-            command_list (list[str]): a list of tools to be checked
+            command_list (list[str]): a list of tools to be checked.
 
         Returns:
             bool: True if all the tools exist. Otherwise False.
@@ -259,16 +259,16 @@ class Kunefe:
         job_file_path: str = './',
         template_name: str = 'generic'
     ) -> None:
-        """Generate batch script file for job submission.
+        """Generate a batch script file for job submission.
 
         Args:
-            job_name (str): _description_
-            sif_file_path (str): _description_
-            command (str): _description_
-            env_vars (str): _description_
-            job_time (str): _description_
-            job_file_path (str, optional): _description_. Defaults to './'.
-            template_name (str, optional): _description_. Defaults to 'generic'.
+            job_name (str): name of the job to be used when submitting.
+            sif_file_path (str): path of the Apptainer image.
+            command (str): a command to be executed using Apptainer image.
+            env_vars (str): environment variables to be used when submitting the job.
+            job_time (str): time limit for the job.
+            job_file_path (str, optional): path to save the generated batch job script. Defaults to './'.
+            template_name (str, optional): name of the template to be used. Defaults to 'generic'.
         """
         parent_dir = os.path.dirname(__file__)
         templates_folder = os.path.join(parent_dir, "templates")

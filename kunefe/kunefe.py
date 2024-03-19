@@ -76,7 +76,7 @@ class Kunefe:
         Returns:
             None
         """
-        self.set_ssh_client()
+        self.ssh_client = self.set_ssh_client()
         self.password = self.set_password()
         self.ssh_client.connect(
             hostname=self.hostname,

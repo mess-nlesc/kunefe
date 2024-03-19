@@ -230,6 +230,14 @@ class Kunefe:
 
         Returns:
             bool: True if command exists. Otherwise False.
+
+        Example:
+            >>> from kunefe import Kunefe
+            >>> kunefe = Kunefe(username="xenon", hostname="localhost", port=10022)
+            >>> kunefe.check_local_command_exists(command='ls')
+            True
+            >>> kunefe.check_local_command_exists(command='thisdoesnotexist')
+            False
         """
         return which(command) is not None
 

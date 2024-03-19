@@ -244,7 +244,6 @@ class Kunefe:
         """
         # TODO: also check the required versions
         if all(self.check_local_command_exists(command) for command in command_list):
-            print("Have all the required external tools.")
             return True
         else:
             return False

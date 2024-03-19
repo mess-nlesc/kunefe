@@ -7,6 +7,7 @@ Returns:
 import atexit
 import getpass
 import os
+import sys
 import subprocess
 import time
 from shutil import which
@@ -309,7 +310,7 @@ class Kunefe:
             print(f"Batch job file was saved as {filename}")
 
     def run_remote_command(
-        self, command: str, timeout: int = 5, flush: bool = False
+        self, command: str, timeout: int = 5, flush: bool = False, show_stdout: bool = False
     ) -> None:
         """Run a command on a remote system.
 
@@ -317,36 +318,30 @@ class Kunefe:
             command (str): command to be executed on the remote system.
             timeout (int, optional): time to wait before considering the command as failed. Defaults to 5.
             flush (bool, optional): flush the output. Defaults to False.
+            show_stdout (bool, optional): prints the stdout. Defaults to False.
 
         Returns:
             None
         """
-        # transport = self.ssh_client.get_transport()
-        # channel = transport.open_session()
-        # channel.get_pty()
-        # channel.settimeout(timeout)
-        # channel.set_combine_stderr(True)
-        # stdout = channel.makefile()
         self.ssh_client.invoke_shell()
         stdin, stdout, stderr = self.ssh_client.exec_command(
             command=command,
             timeout=timeout
         )
 
-        # stdout_lines = stdout.readlines()
-        # for line in stdout_lines:
-        #     if flush:
-        #         print(line, end="", flush=True)
-        #     else:
-        #         print(line, end="")
+        if show_stdout:
+            stdout_lines = stdout.readlines()
+            for line in stdout_lines:
+                if flush:
+                    print(line, end="", flush=True)
+                else:
+                    print(line, end="")
 
-        # # https://stackoverflow.com/a/11474509
-        # if flush:
-        #     sys.stdout.write(
-        #         "\033[F" * len(stdout_lines)
-        #     )  # Cursor up for X number of lines
-
-        # stdout_string = stdout.read().decode('ascii').strip("\n")
+            # https://stackoverflow.com/a/11474509
+            if flush:
+                sys.stdout.write(
+                    "\033[F" * len(stdout_lines)
+                )  # Cursor up for X number of lines
 
         return [stdin.read().decode('ascii') if stdin.readable() else '',
                 stdout.read().decode('ascii') if stdout.readable() else '',
@@ -363,7 +358,7 @@ class Kunefe:
         """
         command = 'squeue --all'
         while True:
-            self.run_remote_command(command=command, timeout=5, flush=True)
+            self.run_remote_command(command=command, timeout=5, flush=True, show_stdout=True)
             time.sleep(sleep_time)
 
     def cleanup(self) -> None:  # pragma: no cover

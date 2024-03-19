@@ -1,4 +1,4 @@
-# test_examples.py
+# examples/test_examples.py
 
 import doctest
 

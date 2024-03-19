@@ -1,4 +1,5 @@
 <!-- Examples.md -->
+<!-- Run: python examples/test_examples.py -->
 
 # Kunefe examples
 
@@ -18,4 +19,17 @@ False
 
 ```
 
-These examples show how to use the `kunefe` module in your code.
+## Check required tools to run the package
+
+```python
+>>> from kunefe import Kunefe
+>>> kunefe = Kunefe(username="xenon", hostname="localhost", port=10022)
+
+>>> kunefe.check_required_tools(['ls', 'rsync', 'cp'])
+Have all the required external tools.
+True
+
+>>> kunefe.check_required_tools(['docker', 'rsync', 'bsxcommand'])
+False
+
+```

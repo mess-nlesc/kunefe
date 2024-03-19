@@ -7,8 +7,8 @@ Returns:
 import atexit
 import getpass
 import os
-import sys
 import subprocess
+import sys
 import time
 from shutil import which
 from stat import S_ISDIR

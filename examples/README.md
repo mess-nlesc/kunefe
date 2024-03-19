@@ -1,4 +1,4 @@
-<!-- Examples.md -->
+<!-- examples/README.md -->
 <!-- Run: python examples/test_examples.py -->
 
 # Kunefe examples

@@ -2,4 +2,4 @@
 
 import doctest
 
-doctest.testfile("Examples.md", verbose=True)
+doctest.testfile("README.md", verbose=True)

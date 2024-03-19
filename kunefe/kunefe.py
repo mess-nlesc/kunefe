@@ -249,6 +249,14 @@ class Kunefe:
 
         Returns:
             bool: True if all the tools exist. Otherwise False.
+
+        Example:
+            >>> from kunefe import Kunefe
+            >>> kunefe = Kunefe(username="xenon", hostname="localhost", port=10022)
+            >>> kunefe.check_required_tools(['ls', 'rsync', 'cp'])
+            True
+            >>> kunefe.check_required_tools(['docker', 'rsync', 'bsxcommand'])
+            False
         """
         # TODO: also check the required versions
         if all(self.check_local_command_exists(command) for command in command_list):

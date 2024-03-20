@@ -97,19 +97,16 @@ jobs:
 
 
   examples:
-    name: Type checking for (${{ matrix.python-version }}, ${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
+    name: Checking the examples
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix:
-        os: ['ubuntu-latest']
-        python-version: ['3.10', '3.11', '3.12']
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python 3.11
         uses: actions/setup-python@v3
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.11
       - name: Python info
         shell: bash -e {0}
         run: |

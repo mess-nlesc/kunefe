@@ -26,13 +26,5 @@ kunefe = Kunefe(username="xenon", hostname="localhost", port=10022)
 #     local_folder="./copy_of_test_folder"
 # )
 
-# # check if the required tools (commands) available on the host system
-# requirements_status = kunefe.check_required_tools(['docker', 'apptainer'])
-# print(f'Requirements status: {requirements_status}')
-
-# # build the apptainer image from the docker image
-# image_build_status = kunefe.build_apptainer_image(netlogo_version='6.3.0')
-# print(f'Image build status: {image_build_status}')
-
 # # watch the slurm queue
 # kunefe.watch_slurm_queue()

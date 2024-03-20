@@ -11,6 +11,7 @@ import subprocess
 import sys
 import time
 from shutil import which
+import stat
 from stat import S_ISDIR
 from stat import S_ISREG
 from typing import Tuple
@@ -124,17 +125,21 @@ class Kunefe:
             remote_path = remote_folder + "/" + entry.filename
             local_path = os.path.join(local_folder, entry.filename)
             mode = entry.st_mode
-            if S_ISDIR(mode):
-                try:
-                    os.mkdir(local_path)
-                except OSError:
-                    pass
-                self.get_files(remote_path, local_path)
-            elif S_ISREG(mode):
-                self.sftp_client.get(remote_path, local_path)
-            else:
+            if mode is None:
                 # TODO: throw an exception here
-                print("Unknown type encountered when running get_files method")
+                print("Path type is None")
+            else:
+                if S_ISDIR(mode):
+                    try:
+                        os.mkdir(local_path)
+                    except OSError:
+                        pass
+                    self.get_files(remote_path, local_path)
+                elif S_ISREG(mode):
+                    self.sftp_client.get(remote_path, local_path)
+                else:
+                    # TODO: throw an exception here
+                    print("Unknown type encountered when running get_files method")
         return None
 
     def put_files(

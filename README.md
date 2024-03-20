@@ -10,8 +10,17 @@ Kunefe is a Python package that helps users run containers on HPC systems. It ca
 
 ## Requirements
 
+### The host system requirements (e.g. your laptop or desktop computer):
+
 - [Docker](https://docs.docker.com/engine/install/)
 - [Apptainer](https://apptainer.org/docs/admin/main/installation.html)
+- [Python 3](https://www.python.org/downloads/)
+
+### Remote system requirements:
+
+- [Apptainer](https://apptainer.org/docs/admin/main/installation.html)
+- [SSH server](https://www.openssh.com/)
+- [Slurm Workload Manager](https://slurm.schedmd.com/documentation.html)
 
 ## Badges
 

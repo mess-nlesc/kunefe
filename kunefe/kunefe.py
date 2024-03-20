@@ -49,7 +49,7 @@ class Kunefe:
         self.hostname = hostname
         self.port = port
         self.password = None
-        self.ssh_client = None
+        self.ssh_client: paramiko.SSHClient
         self.sftp_client = None
         atexit.register(self.cleanup)
 

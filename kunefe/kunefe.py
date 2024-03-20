@@ -235,7 +235,7 @@ class Kunefe:
         Returns:
             bool: True if command exists. Otherwise False.
 
-        Example:
+        Examples:
             >>> from kunefe import Kunefe
             >>> kunefe = Kunefe(username="xenon", hostname="localhost", port=10022)
             >>> kunefe.check_local_command_exists(command='ls')
@@ -254,7 +254,7 @@ class Kunefe:
         Returns:
             bool: True if all the tools exist. Otherwise False.
 
-        Example:
+        Examples:
             >>> from kunefe import Kunefe
             >>> kunefe = Kunefe(username="xenon", hostname="localhost", port=10022)
             >>> kunefe.check_required_tools(['ls', 'rsync', 'cp'])

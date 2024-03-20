@@ -32,3 +32,17 @@ True
 False
 
 ```
+
+## Run a shell command
+
+```python
+>>> import subprocess
+>>> run_command = lambda cmd: subprocess.check_output(cmd, shell=True).decode().strip()
+>>> print(run_command('echo $SHELL'))
+/bin/bash
+
+>>> print(run_command("date +'%Y'"))
+2024
+
+```
+

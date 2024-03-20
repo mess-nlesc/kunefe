@@ -80,4 +80,8 @@ True
 >>> kunefe.generate_job_script(job_name='kunefe_generic_job', sif_file_path="/home/xenon/myapp_0.1.0.sif", command="ls /home/xenon", env_vars="PATH=$PATH:/home/xenon", job_time='0:30:00')
 Batch job file was saved as .//kunefe_generic_job.sh
 
+# clean up
+>>> run_command('rm -f kunefe_generic_job.sh')
+''
+
 ```

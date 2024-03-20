@@ -13,6 +13,7 @@ import time
 from shutil import which
 from stat import S_ISDIR
 from stat import S_ISREG
+from typing import NoReturn
 import jinja2
 import paramiko
 
@@ -33,7 +34,7 @@ class Kunefe:
         sftp_client: sftp client to copy files from and to a remote system.
     """
 
-    def __init__(self, username: str, hostname: str, port: int) -> None:
+    def __init__(self, username: str, hostname: str, port: int) -> NoReturn:
         """Initialize Kunefe class with username, hostname and port.
 
         Args:
@@ -41,6 +42,8 @@ class Kunefe:
             hostname (str): hostname or the IP address of the remote system.
             port (int): SSH port to be used by the clients.
 
+        Returns:
+            NoReturn
         """
         self.username = username
         self.hostname = hostname
@@ -71,11 +74,11 @@ class Kunefe:
         ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         return ssh_client
 
-    def connect_remote(self) -> None:
+    def connect_remote(self) -> NoReturn:
         """Creates an ssh and sftp clients, prompts for user password and connects to the remote host.
 
         Returns:
-            None
+            NoReturn
         """
         self.ssh_client = self.set_ssh_client()
         self.password = self.set_password()
@@ -87,21 +90,21 @@ class Kunefe:
         )
         self.sftp_client = self.ssh_client.open_sftp()
 
-    def create_remote_folder(self, remote_folder: str) -> None:
+    def create_remote_folder(self, remote_folder: str) -> NoReturn:
         """Create a folder in the remote system.
 
         Args:
             remote_folder (str): path of the folder to be created on the remote system.
 
         Returns:
-            None
+            NoReturn
         """
         try:
             self.sftp_client.mkdir(remote_folder)
         except IOError:
             print(f"(assuming {remote_folder}/ already exists)")
 
-    def get_files(self, remote_folder: str, local_folder: str = "./") -> None:
+    def get_files(self, remote_folder: str, local_folder: str = "./") -> NoReturn:
         """Get files from the remote system.
 
         Args:
@@ -109,7 +112,7 @@ class Kunefe:
             local_folder (str, optional): path of the host folder to copy the files to. Defaults to "./".
 
         Returns:
-            None
+            NoReturn
         """
         if not os.path.exists(local_folder):
             os.mkdir(local_folder)
@@ -135,7 +138,7 @@ class Kunefe:
         remote_folder: str = "~",
         local_folder: str = "./",
         verbose: bool = False,
-    ) -> None:
+    ) -> NoReturn:
         """Copy files to the remote system.
 
         Args:
@@ -144,7 +147,7 @@ class Kunefe:
             verbose (bool): show verbose info when copying.
 
         Returns:
-            None
+            NoReturn
         """
         if remote_folder == "~":
             remote_folder = os.path.expanduser("~")
@@ -182,14 +185,14 @@ class Kunefe:
                         f"\ncopying: {filename}\n  from: {from_path}\n  to: {to_path}"
                     )
 
-    def submit_job(self, job_file: str) -> None:
+    def submit_job(self, job_file: str) -> NoReturn:
         """Submit job to SLURM cluster.
 
         Args:
             job_file (str): full path of the job script to be submitted.
 
         Returns:
-            None
+            NoReturn
         """
         stdin, stdout, stderr = self.ssh_client.exec_command(
             f"sbatch {job_file}"
@@ -274,7 +277,7 @@ class Kunefe:
         job_time: str,
         job_file_path: str = './',
         template_name: str = 'generic'
-    ) -> None:
+    ) -> NoReturn:
         """Generate a batch script file for job submission.
 
         Args:
@@ -287,7 +290,7 @@ class Kunefe:
             template_name (str, optional): name of the template to be used. Defaults to 'generic'.
 
         Returns:
-            None
+            NoReturn
         """
         parent_dir = os.path.dirname(__file__)
         templates_folder = os.path.join(parent_dir, "templates")
@@ -311,7 +314,7 @@ class Kunefe:
 
     def run_remote_command(
         self, command: str, timeout: int = 5, flush: bool = False, show_stdout: bool = False
-    ) -> None:
+    ) -> NoReturn:
         """Run a command on a remote system.
 
         Args:
@@ -321,7 +324,7 @@ class Kunefe:
             show_stdout (bool, optional): prints the stdout. Defaults to False.
 
         Returns:
-            None
+            NoReturn
         """
         self.ssh_client.invoke_shell()
         stdin, stdout, stderr = self.ssh_client.exec_command(
@@ -347,24 +350,24 @@ class Kunefe:
                 stdout.read().decode('ascii') if stdout.readable() else '',
                 stderr.read().decode('ascii') if stderr.readable() else '']
 
-    def watch_slurm_queue(self, sleep_time: float = 5.0) -> None:  # pragma: no cover
+    def watch_slurm_queue(self, sleep_time: float = 5.0) -> NoReturn:  # pragma: no cover
         """Watches the SLURM job queue.
 
         Args:
             sleep_time (float, optional): time to wait before refreshing the queue status. Defaults to 5.0.
 
         Returns:
-            None
+            NoReturn
         """
         command = 'squeue --all'
         while True:
             self.run_remote_command(command=command, timeout=5, flush=True, show_stdout=True)
             time.sleep(sleep_time)
 
-    def cleanup(self) -> None:  # pragma: no cover
+    def cleanup(self) -> NoReturn:  # pragma: no cover
         """Destructor method to clean things up.
 
         Returns:
-            None
+            NoReturn
         """
         print("Running cleanup...")

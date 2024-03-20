@@ -42,9 +42,6 @@ False
 ```
 
 ```python
->>> print(run_command('echo $SHELL'))
-/bin/bash
-
 >>> print(run_command("date +'%Y'"))
 2024
 

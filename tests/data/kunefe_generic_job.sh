@@ -1,4 +1,3 @@
-
 #!/bin/bash
 #SBATCH --job-name pytest_job
 #SBATCH --output pytest_job.out

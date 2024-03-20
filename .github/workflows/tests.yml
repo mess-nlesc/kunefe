@@ -40,7 +40,7 @@ jobs:
       - name: Upgrade pip and install dependencies
         run: |
           python -m pip install --upgrade pip setuptools
-          python -m pip install .[dev,publishing]
+          python -m pip install .[dev]
       - name: Run unit tests on Linux
         run: |
           python -m pytest -v
@@ -67,7 +67,7 @@ jobs:
       - name: Upgrade pip and install dependencies
         run: |
           python -m pip install --upgrade pip setuptools
-          python -m pip install .[dev,publishing]
+          python -m pip install .[dev]
       - name: Check static typing
         run: |
           mypy --install-types --extra-checks  --strict  kunefe
@@ -91,7 +91,7 @@ jobs:
       - name: Upgrade pip and install dependencies
         run: |
           python -m pip install --upgrade pip setuptools
-          python -m pip install .[dev,publishing]
+          python -m pip install .[dev]
       - name: Check style against standards using ruff
         run: ruff .
 

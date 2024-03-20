@@ -53,11 +53,11 @@ False
 ## build an image
 
 ```python
-# remove existing the sif if it exists  #doctest:+ELLIPSIS
+# remove existing the sif if it exists
 >>> run_command('rm -f netlogo_6.3.0.sif')
 ''
 
-# define the docker image  #doctest:+ELLIPSIS
+# define the docker image
 >>> netlogo_version = "6.3.0"
 >>> netlogo_docker_image = f"comses/netlogo:{netlogo_version}"
 >>> netlogo_sif_file_name = "netlogo_6.3.0.sif"
@@ -82,6 +82,22 @@ Batch job file was saved as .//kunefe_generic_job.sh
 
 # clean up
 >>> run_command('rm -f kunefe_generic_job.sh')
+''
+
+```
+
+
+## generate a NetLogo job script
+
+```python
+# netlogo command to run simulation in headless mode
+>>> netlogo_command = "/opt/netlogo/netlogo-headless.sh --model 'model_path' --experiment 'experiment_name' --table 'table_name'"
+
+>>> kunefe.generate_job_script(job_name='kunefe_netlogo_experiment_job', sif_file_path="/home/xenon/netlogo_6.3.0.sif", command=netlogo_command, env_vars="JAVA_TOOL_OPTIONS=-Xmx8G", job_time='0:30:00', template_name='generic')
+Batch job file was saved as .//kunefe_netlogo_experiment_job.sh
+
+# clean up
+>>> run_command('rm -f kunefe_netlogo_experiment_job.sh')
 ''
 
 ```

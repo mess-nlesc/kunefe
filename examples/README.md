@@ -50,6 +50,26 @@ False
 
 ```
 
-## Copy files
+## build an image
 
+```python
+# remove existing the sif if it exists  #doctest:+ELLIPSIS
+>>> run_command('rm -f netlogo_6.3.0.sif')
+''
+
+# define the docker image  #doctest:+ELLIPSIS
+>>> netlogo_version = "6.3.0"
+>>> netlogo_docker_image = f"comses/netlogo:{netlogo_version}"
+>>> netlogo_sif_file_name = "netlogo_6.3.0.sif"
+
+# build apptainer image from a Docker image
+>>> kunefe.build_apptainer_image(docker_image=netlogo_docker_image, sif_file_name=netlogo_sif_file_name)
+Generated netlogo_6.3.0.sif
+True
+
+# clean up
+>>> run_command('rm -f netlogo_6.3.0.sif')
+''
+
+```
 

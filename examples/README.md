@@ -33,11 +33,15 @@ False
 
 ```
 
-## Run a shell command
+## Extra: Run a shell command
 
 ```python
 >>> import subprocess
 >>> run_command = lambda cmd: subprocess.check_output(cmd, shell=True).decode().strip()
+
+```
+
+```python
 >>> print(run_command('echo $SHELL'))
 /bin/bash
 
@@ -45,4 +49,3 @@ False
 2024
 
 ```
-

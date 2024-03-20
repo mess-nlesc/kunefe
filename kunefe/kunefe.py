@@ -13,7 +13,7 @@ import time
 from shutil import which
 from stat import S_ISDIR
 from stat import S_ISREG
-from typing import NoReturn
+from typing import Tuple
 import jinja2
 import paramiko
 
@@ -34,7 +34,7 @@ class Kunefe:
         sftp_client: sftp client to copy files from and to a remote system.
     """
 
-    def __init__(self, username: str, hostname: str, port: int) -> NoReturn:
+    def __init__(self, username: str, hostname: str, port: int) -> None:
         """Initialize Kunefe class with username, hostname and port.
 
         Args:
@@ -43,7 +43,7 @@ class Kunefe:
             port (int): SSH port to be used by the clients.
 
         Returns:
-            NoReturn
+            None
         """
         self.username = username
         self.hostname = hostname
@@ -52,6 +52,7 @@ class Kunefe:
         self.ssh_client: paramiko.SSHClient
         self.sftp_client: paramiko.SFTPClient
         atexit.register(self.cleanup)
+        return None
 
     def set_password(self) -> str:
         """Sets user password. The password is not echoed.
@@ -74,11 +75,11 @@ class Kunefe:
         ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         return ssh_client
 
-    def connect_remote(self) -> NoReturn:
+    def connect_remote(self) -> None:
         """Creates an ssh and sftp clients, prompts for user password and connects to the remote host.
 
         Returns:
-            NoReturn
+            None
         """
         self.ssh_client = self.set_ssh_client()
         self.password = self.set_password()
@@ -89,22 +90,24 @@ class Kunefe:
             password=self.password,
         )
         self.sftp_client = self.ssh_client.open_sftp()
+        return None
 
-    def create_remote_folder(self, remote_folder: str) -> NoReturn:
+    def create_remote_folder(self, remote_folder: str) -> None:
         """Create a folder in the remote system.
 
         Args:
             remote_folder (str): path of the folder to be created on the remote system.
 
         Returns:
-            NoReturn
+            None
         """
         try:
             self.sftp_client.mkdir(remote_folder)
         except IOError:
             print(f"(assuming {remote_folder}/ already exists)")
+        return None
 
-    def get_files(self, remote_folder: str, local_folder: str = "./") -> NoReturn:
+    def get_files(self, remote_folder: str, local_folder: str = "./") -> None:
         """Get files from the remote system.
 
         Args:
@@ -112,7 +115,7 @@ class Kunefe:
             local_folder (str, optional): path of the host folder to copy the files to. Defaults to "./".
 
         Returns:
-            NoReturn
+            None
         """
         if not os.path.exists(local_folder):
             os.mkdir(local_folder)
@@ -132,13 +135,14 @@ class Kunefe:
             else:
                 # TODO: throw an exception here
                 print("Unknown type encountered when running get_files method")
+        return None
 
     def put_files(
         self,
         remote_folder: str = "~",
         local_folder: str = "./",
         verbose: bool = False,
-    ) -> NoReturn:
+    ) -> None:
         """Copy files to the remote system.
 
         Args:
@@ -147,7 +151,7 @@ class Kunefe:
             verbose (bool): show verbose info when copying.
 
         Returns:
-            NoReturn
+            None
         """
         if remote_folder == "~":
             remote_folder = os.path.expanduser("~")
@@ -184,22 +188,25 @@ class Kunefe:
                     print(
                         f"\ncopying: {filename}\n  from: {from_path}\n  to: {to_path}"
                     )
+        return None
 
-    def submit_job(self, job_file: str) -> NoReturn:
+    def submit_job(self, job_file: str, verbose: bool = False) -> Tuple[int, str, str, str]:
         """Submit job to SLURM cluster.
 
         Args:
             job_file (str): full path of the job script to be submitted.
+            verbose (bool): run in verbose mode.
 
         Returns:
-            NoReturn
+            tuple(int, str, str, str): job_id, stdin, stdout, stderr
         """
         stdin, stdout, stderr = self.ssh_client.exec_command(
             f"sbatch {job_file}"
         )
         job_id = int(stdout.read().decode().split()[-1])
-        print(f"Submitted job with id: {job_id}")
-        return job_id, stdin, stdout, stderr
+        if verbose:
+            print(f"Submitted job with id: {job_id}")
+        return (job_id, stdin.read().decode(), stdout.read().decode(), stderr.read().decode())
 
     def build_apptainer_image(self, docker_image: str, sif_file_name: str = 'app.sif') -> bool:
         """Builds an Apptainer image from a Docker image.
@@ -277,7 +284,7 @@ class Kunefe:
         job_time: str,
         job_file_path: str = './',
         template_name: str = 'generic'
-    ) -> NoReturn:
+    ) -> None:
         """Generate a batch script file for job submission.
 
         Args:
@@ -290,7 +297,7 @@ class Kunefe:
             template_name (str, optional): name of the template to be used. Defaults to 'generic'.
 
         Returns:
-            NoReturn
+            None
         """
         parent_dir = os.path.dirname(__file__)
         templates_folder = os.path.join(parent_dir, "templates")
@@ -311,10 +318,11 @@ class Kunefe:
         with open(filename, mode="w", encoding="utf-8") as message:
             message.write(content)
             print(f"Batch job file was saved as {filename}")
+        return None
 
     def run_remote_command(
         self, command: str, timeout: int = 5, flush: bool = False, show_stdout: bool = False
-    ) -> NoReturn:
+    ) -> list[str]:
         """Run a command on a remote system.
 
         Args:
@@ -324,7 +332,7 @@ class Kunefe:
             show_stdout (bool, optional): prints the stdout. Defaults to False.
 
         Returns:
-            NoReturn
+            list[str]: stdin, stdout, stderr
         """
         self.ssh_client.invoke_shell()
         stdin, stdout, stderr = self.ssh_client.exec_command(
@@ -350,24 +358,26 @@ class Kunefe:
                 stdout.read().decode('ascii') if stdout.readable() else '',
                 stderr.read().decode('ascii') if stderr.readable() else '']
 
-    def watch_slurm_queue(self, sleep_time: float = 5.0) -> NoReturn:  # pragma: no cover
+    def watch_slurm_queue(self, sleep_time: float = 5.0) -> None:  # pragma: no cover
         """Watches the SLURM job queue.
 
         Args:
             sleep_time (float, optional): time to wait before refreshing the queue status. Defaults to 5.0.
 
         Returns:
-            NoReturn
+            None
         """
         command = 'squeue --all'
         while True:
             self.run_remote_command(command=command, timeout=5, flush=True, show_stdout=True)
             time.sleep(sleep_time)
+            return None
 
-    def cleanup(self) -> NoReturn:  # pragma: no cover
+    def cleanup(self) -> None:  # pragma: no cover
         """Destructor method to clean things up.
 
         Returns:
-            NoReturn
+            None
         """
         print("Running cleanup...")
+        return None

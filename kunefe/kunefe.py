@@ -11,7 +11,6 @@ import subprocess
 import sys
 import time
 from shutil import which
-import stat
 from stat import S_ISDIR
 from stat import S_ISREG
 from typing import Tuple

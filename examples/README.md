@@ -26,7 +26,6 @@ False
 >>> kunefe = Kunefe(username="xenon", hostname="localhost", port=10022)
 
 >>> kunefe.check_required_tools(['ls', 'rsync', 'cp'])
-Have all the required external tools.
 True
 
 >>> kunefe.check_required_tools(['docker', 'rsync', 'bsxcommand'])

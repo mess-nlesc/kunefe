@@ -48,9 +48,9 @@ class Kunefe:
         self.username = username
         self.hostname = hostname
         self.port = port
-        self.password = None
+        self.password: str
         self.ssh_client: paramiko.SSHClient
-        self.sftp_client = None
+        self.sftp_client: paramiko.SFTPClient
         atexit.register(self.cleanup)
 
     def set_password(self) -> str:

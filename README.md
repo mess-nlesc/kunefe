@@ -22,6 +22,8 @@ Kunefe is a Python package that helps users run containers on HPC systems. It ca
 - [SSH server](https://www.openssh.com/)
 - [Slurm Workload Manager](https://slurm.schedmd.com/documentation.html)
 
+**Note:** If Apptainer is not available on the remote system, it can be installed using kunefe which will require the following packages to be installed on the remote system: `curl rpm2cpio cpio`
+
 ## Badges
 
 [![Tests](https://github.com/mess-nlesc/kunefe/actions/workflows/tests.yml/badge.svg)](https://github.com/mess-nlesc/kunefe/actions/workflows/tests.yml)

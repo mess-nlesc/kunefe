@@ -246,16 +246,14 @@ class Kunefe:
         Returns:
             bool: True if the apptainer installation was successful. Otherwise, returns False.
         """
-
         if install_path == "~":
             install_path = os.path.expanduser("~")
 
         print(f"installing apptainer to: {install_path}")
 
         install_script_url = "https://raw.githubusercontent.com/apptainer/apptainer/main/tools/install-unprivileged.sh"
-        exe_path = f"{install_path}/bin/apptainer"
         install_command = f"curl -s {install_script_url} | bash -s - {install_path}"
-
+        # exe_path = f"{install_path}/bin/apptainer"
         print(f"running: {install_command}")
         _, stdout, stderr = self.run_remote_command(command=install_command, timeout=30, flush=False, show_stdout=True)
 

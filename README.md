@@ -25,6 +25,7 @@ Kunefe is a Python package that helps users run containers on HPC systems. It ca
 ## Badges
 
 [![Tests](https://github.com/mess-nlesc/kunefe/actions/workflows/tests.yml/badge.svg)](https://github.com/mess-nlesc/kunefe/actions/workflows/tests.yml)
+[![Examples](https://github.com/mess-nlesc/kunefe/actions/workflows/examples.yml/badge.svg)](https://github.com/mess-nlesc/kunefe/actions/workflows/examples.yml)
 [![Documentation Status](https://readthedocs.org/projects/kunefe/badge/?version=latest)](https://kunefe.readthedocs.io/en/latest/?badge=latest)
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/kunefe.svg)](https://pypi.python.org/pypi/kunefe/)
 ![](https://img.shields.io/badge/windows%20%7C%20macos%20%7C%20linux-grey)

@@ -237,6 +237,38 @@ class Kunefe:
             print(process.stderr)
             return False
 
+    def install_apptainer_on_remote(self, install_path: str = "~") -> bool:
+        """Installs Apptainer on a remote system in unprivileged mode.
+
+        Args:
+            install_path (str): path to install apptainer binary.
+
+        Returns:
+            bool: True if the apptainer installation was successful. Otherwise, returns False.
+        """
+
+        if install_path == "~":
+            install_path = os.path.expanduser("~")
+
+        print(f"installing apptainer to: {install_path}")
+
+        install_script_url = "https://raw.githubusercontent.com/apptainer/apptainer/main/tools/install-unprivileged.sh"
+        exe_path = f"{install_path}/bin/apptainer"
+        install_command = f"curl -s {install_script_url} | bash -s - {install_path}"
+
+        print(f"running: {install_command}")
+        _, stdout, stderr = self.run_remote_command(command=install_command, timeout=30, flush=False, show_stdout=True)
+
+        # TODO: add the exectable to $PATH and check the executable on the remote system: command -v apptainer
+        # if os.path.isfile(exe_path):
+        #     print(f"Installed at {exe_path}")
+        #     # print(process.stdout)
+        #     return True
+        # else:
+        #     print("Apptainer installation has failed.")
+        #     print(process.stderr)
+        #     return False
+
     def check_local_command_exists(self, command: str) -> bool:
         """Check whether `command` is on PATH and marked as executable.
 

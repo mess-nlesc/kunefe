@@ -9,7 +9,12 @@ from kunefe import Kunefe
 
 ## generate an apptainer image
 # initialize kunefe by providing connection details
+
+# run using xenon
 # kunefe = Kunefe(username="xenon", hostname="localhost", port=10022)
+# home_folder = "/home/xenon/"
+
+# run on snellius
 kunefe = Kunefe(username="olyashevska", hostname="snellius.surf.nl", port=22)
 home_folder = "/home/olyashevska/"
 
@@ -21,23 +26,25 @@ try:
 except FileExistsError:
     print(f"Directory '{local_folder}' already exists.")
 
+# specify the Docker image to use
 version = "6.3.0"
 docker_image = f"comses/netlogo:{version}"
 sif_file_name = "netlogo_6.3.0.sif"
 local_sif_file_path = local_folder + sif_file_name
-# remote_folder = "/home/xenon/test_folder/"
+
 remote_folder = home_folder + "test_folder/"
 remote_sif_file_path = remote_folder + sif_file_name
 
 # build apptainer image from a Docker image
-kunefe.build_apptainer_image(docker_image=docker_image, sif_file_name=local_sif_file_path)
+kunefe.build_apptainer_image(
+    docker_image=docker_image, sif_file_name=local_sif_file_path
+)
 
 kunefe.connect_remote()
 
 kunefe.create_remote_folder(remote_folder=remote_folder)
 
 ## generate a job script
-# TODO place files in the correct location
 netlogo_command = """/opt/netlogo/netlogo-headless.sh \
 --model 'model_path' \
 --experiment 'experiment_name' \

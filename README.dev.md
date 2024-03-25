@@ -2,6 +2,46 @@
 
 If you're looking for user documentation, go [here](README.md).
 
+## Docker image
+
+If you do not have an access to a HPC cluster with a SLURM service, you can build and use your own Docker image which is based on [`xenonmiddleware/slurm`](https://hub.docker.com/r/xenonmiddleware/slurm/).
+
+To build the image run:
+
+```shell
+docker build --tag kunefe-slurm Docker
+```
+
+You can list the existing Docker images with:
+
+```shell
+docker images
+```
+
+The output you get should be similar to the one below:
+
+```
+REPOSITORY              TAG       IMAGE ID       CREATED        SIZE
+kunefe-slurm            latest    be0cd0f582d7   2 hours ago    486MB
+```
+
+To start the SLURM service run:
+
+```shell
+docker run --detach --publish 10022:22 kunefe-slurm:latest
+```
+
+If you need to connect to the server via ssh run:
+
+```shell
+ssh -p 10022 xenon@localhost -t /bin/bash
+```
+
+The default user and the password for the SSH service are below.
+
+user: `xenon`
+password: `javagat`
+
 ## Development install
 
 ```shell
@@ -62,7 +102,7 @@ coverage report
 
 ## Running linters locally
 
-For linting and sorting imports we will use [ruff](https://beta.ruff.rs/docs/). Running the linters requires an 
+For linting and sorting imports we will use [ruff](https://beta.ruff.rs/docs/). Running the linters requires an
 activated virtual environment with the development tools installed.
 
 ```shell

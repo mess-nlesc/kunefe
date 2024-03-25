@@ -249,23 +249,30 @@ class Kunefe:
         if install_path == "~":
             install_path = os.path.expanduser("~")
 
-        print(f"installing apptainer to: {install_path}")
+        print(f"installing apptainer at {install_path}")
 
         install_script_url = "https://raw.githubusercontent.com/apptainer/apptainer/main/tools/install-unprivileged.sh"
+        exe_path = f"{install_path}/bin/apptainer"
+
         install_command = f"curl -s {install_script_url} | bash -s - {install_path}"
-        # exe_path = f"{install_path}/bin/apptainer"
-        print(f"running: {install_command}")
-        _, stdout, stderr = self.run_remote_command(command=install_command, timeout=30, flush=False, show_stdout=True)
+        # print(f"running: {install_command}")
+        _, _, stderr_install = self.run_remote_command(
+            command=install_command, timeout=30, flush=False, show_stdout=True)
+
+        check_install_command = f"file {exe_path}"
+        # print(f"running: {check_install_command}")
+        _, _, stderr_check = self.run_remote_command(
+            command=check_install_command, timeout=30, flush=False, show_stdout=True)
 
         # TODO: add the exectable to $PATH and check the executable on the remote system: command -v apptainer
-        # if os.path.isfile(exe_path):
-        #     print(f"Installed at {exe_path}")
-        #     # print(process.stdout)
-        #     return True
-        # else:
-        #     print("Apptainer installation has failed.")
-        #     print(process.stderr)
-        #     return False
+        if stderr_install == "" or stderr_check == "":
+            print(f"Installed at {exe_path}")
+            return True
+        else:
+            print("Apptainer installation has failed.")
+            print(f"installation error: {stderr_install}")
+            print(f"installation check error:{stderr_check}")
+            return False
 
     def check_local_command_exists(self, command: str) -> bool:
         """Check whether `command` is on PATH and marked as executable.

@@ -13,6 +13,11 @@ authors:
     email: f.diblen@esciencecenter.nl
     affiliation: Netherlands eScience Center
     orcid: 'https://orcid.org/0000-0002-0989-929X'
+  - given-names: Olga
+    family-names: Lyashevska
+    email: o.lyashevska@esciencecenter.nl
+    affiliation: Netherlands eScience Center
+    orcid: 'https://orcid.org/0000-0002-8686-8550'
 repository-code: 'https://github.com/mess-nlesc/kunefe'
 keywords:
   - docker

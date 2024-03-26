@@ -126,7 +126,6 @@ Batch job file was saved as .//kunefe_netlogo_experiment_job.sh
 
 ```
 
-
 ## submit a job using existing job script
 
 ```python
@@ -138,6 +137,20 @@ Batch job file was saved as .//kunefe_netlogo_experiment_job.sh
 >>     job_file="/home/xenon/test-slurm.job"
 >> )
 >> print(f'job_id: {job_id}')
+
+```
+
+## copy files from the remote system
+
+```python
+# set up clients and connect to the remote
+>> kunefe.connect_remote()
+
+# download files from the server
+>> kunefe.get_files(
+>>     remote_folder="/home/xenon/test_folder",
+>>     local_folder="./copy_of_test_folder"
+>> )
 
 ```
 

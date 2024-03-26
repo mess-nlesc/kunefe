@@ -3,21 +3,24 @@
 import os
 from kunefe import Kunefe
 
+
 # define the constants
+USERNAME = "JaneDoe"
+# folders
 OUTPUT_FOLDER_LOCAL = "./output/"    # local folder to save output
-REMOTE_HOME = "/home/olyashevska/"   # home folder on the remote system
+REMOTE_HOME = f"/home/{USERNAME}/"   # home folder on the remote system
 OUTPUT_FOLDER_REMOTE = REMOTE_HOME + "test_folder/"
 # specify the Docker image
 NETLOGO_VERSION = "6.3.0"
 DOCKER_IMAGE = f"comses/netlogo:{NETLOGO_VERSION}"
 # specify the apptainer image
-SIF_FILE_NAME = "netlogo_6.3.0.sif"
+SIF_FILE_NAME = f"netlogo_{NETLOGO_VERSION}.sif"
 SIF_FILE_PATH_LOCAL = OUTPUT_FOLDER_LOCAL + SIF_FILE_NAME
 SIF_FILE_PATH_REMOTE = OUTPUT_FOLDER_REMOTE + SIF_FILE_NAME
 
 # We will run the NetLogo simulation on Snellius cluster:
 # https://www.surf.nl/diensten/snellius-de-nationale-supercomputer
-kunefe = Kunefe(username="olyashevska", hostname="snellius.surf.nl", port=22)
+kunefe = Kunefe(username=USERNAME, hostname="snellius.surf.nl", port=22)
 
 # create a local folder to save the generated files and the output
 try:
@@ -67,5 +70,5 @@ job_id, stdin, stdout, stderr = kunefe.submit_job(
 # monitor the queue
 kunefe.watch_slurm_queue()
 
-# retrive the job results
-kunefe.get_files(remote_folder=OUTPUT_FOLDER_REMOTE, local_folder=f"{OUTPUT_FOLDER_LOCAL}/result")
+# the method below can be used to retrieve the job results
+# kunefe.get_files(remote_folder=OUTPUT_FOLDER_REMOTE, local_folder=f"{OUTPUT_FOLDER_LOCAL}/result")

@@ -86,7 +86,6 @@ Batch job file was saved as .//kunefe_generic_job.sh
 
 ```
 
-
 ## generate a NetLogo job script
 
 ```python
@@ -101,3 +100,7 @@ Batch job file was saved as .//kunefe_netlogo_experiment_job.sh
 ''
 
 ```
+
+## A complete example
+
+A complete example can be found at [complete_example.py](complete_example.py)

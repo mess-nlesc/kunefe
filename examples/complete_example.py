@@ -3,7 +3,6 @@
 import os
 from kunefe import Kunefe
 
-
 # define the constants
 USERNAME = "JaneDoe"
 # folders

@@ -115,6 +115,17 @@ Batch job file was saved as .//kunefe_netlogo_experiment_job.sh
 
 ```
 
+## installing Apptainer on the remote system
+
+```python
+# set up clients and connect to the remote
+>> kunefe.connect_remote()
+
+# install apptainer to `/home/xenon/tools` on the remote system
+>> kunefe.install_apptainer_on_remote(install_path="/home/xenon/tools")
+
+```
+
 ## A complete example
 
 A complete example can be found at [complete_example.py](complete_example.py)

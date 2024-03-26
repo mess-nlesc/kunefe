@@ -154,6 +154,20 @@ Batch job file was saved as .//kunefe_netlogo_experiment_job.sh
 
 ```
 
+## copy files to the remote system
+
+```python
+# set up clients and connect to the remote
+>> kunefe.connect_remote()
+
+# copy files to the server
+>> kunefe.put_files(
+>>     remote_folder="/home/xenon/",
+>>     local_folder="./test_folder"
+>> )
+
+```
+
 ## A complete example
 
 A complete example can be found at [complete_example.py](complete_example.py)

@@ -77,13 +77,13 @@ Kunefe is a Python package that helps users run Docker containers on HPC systems
 To install the latest kunefe release from PyPI, run:
 
 ```console
-python -m pip kunefe
+python -m pip install kunefe
 ```
 
 To install the development version of kunefe from GitHub repository, do:
 
 ```console
-python -m pip  install git+https://github.com/mess-nlesc/kunefe.git@main
+python -m pip install git+https://github.com/mess-nlesc/kunefe.git@main
 ```
 
 ## Examples

@@ -101,6 +101,27 @@ Batch job file was saved as .//kunefe_netlogo_experiment_job.sh
 
 ```
 
+## running a command on the remote system
+
+```python
+# set up clients and connect to the remote
+>> kunefe.connect_remote()
+
+# run 'ls' command on the remote system and show the output
+>> stdin, stdout, stderr = kunefe.run_remote_command(command='ls /home/xenon')
+>> print(f'stdin:\n{stdin}')
+>> print(f'stdout:\n{stdout}')
+>> print(f'stderr:\n{stderr}')
+
+```
+
 ## A complete example
 
 A complete example can be found at [complete_example.py](complete_example.py)
+
+
+<!-- ## Title
+
+```python
+>>>
+``` -->

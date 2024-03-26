@@ -126,6 +126,21 @@ Batch job file was saved as .//kunefe_netlogo_experiment_job.sh
 
 ```
 
+
+## submit a job using existing job script
+
+```python
+# set up clients and connect to the remote
+>> kunefe.connect_remote()
+
+# submit a new job
+>> job_id, stdin, stdout, stderr = kunefe.submit_job(
+>>     job_file="/home/xenon/test-slurm.job"
+>> )
+>> print(f'job_id: {job_id}')
+
+```
+
 ## A complete example
 
 A complete example can be found at [complete_example.py](complete_example.py)

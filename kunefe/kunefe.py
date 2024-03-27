@@ -384,7 +384,6 @@ class Kunefe:
                 else:
                     print(line, end="")
 
-            # https://stackoverflow.com/a/11474509
             if flush:
                 sys.stdout.write(
                     "\033[F" * len(stdout_lines)

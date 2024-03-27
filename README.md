@@ -1,13 +1,15 @@
 # Kunefe
 
-Kunefe is a Python package that helps users run Docker containers on HPC systems. It can:
+Kunefe is a Python package that helps users run containerized applications (Docker) on HPC systems. It can:
 
 - convert an existing Docker image into an Apptainer image
-- generate scripts for batch jobs to run containerized images
-- submit jobs to HPC batch queues (SLURM)
-- connect to a remote host via SSH and run commands
-- copy and retrieve files from a remote system
-- monitor the job queue
+- connect to a remote host via SSH and run shell commands
+- generate scripts for batch jobs
+- submit generated job scripts to HPC batch queues (SLURM)
+- copy files and folders to a remote system
+- retrieve files and folders from a remote system
+- install Apptainer on a remote system
+- monitor the job queue (SLURM)
 
 ## Requirements
 

@@ -28,8 +28,10 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Desktop (please complete the following information):**
-- OS: [run this command: uname -a]
-- Kunefe version  [run this command: python -c "import kunefe; print(kunefe.__version__)"]
+- OS:
+<!-- run this command: uname -a -->
+- Kunefe version:
+<!-- run this command: python -c "import kunefe; print(kunefe.__version__)" -->
 
 **Additional context**
 Add any other context about the problem here.

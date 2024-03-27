@@ -125,7 +125,6 @@ class Kunefe:
             local_path = os.path.join(local_folder, entry.filename)
             mode = entry.st_mode
             if mode is None:
-                # TODO: throw an exception here
                 print("Path type is None")
             else:
                 if S_ISDIR(mode):
@@ -137,7 +136,6 @@ class Kunefe:
                 elif S_ISREG(mode):
                     self.sftp_client.get(remote_path, local_path)
                 else:
-                    # TODO: throw an exception here
                     print("Unknown type encountered when running get_files method")
         return None
 
@@ -227,7 +225,6 @@ class Kunefe:
         process = subprocess.Popen(build_command, shell=True)
         process.wait()
 
-        # TODO: handle process status mor carefully: what happens if the file exists?
         if os.path.isfile(sif_file_name):
             print(f"Generated {sif_file_name}")
             # print(process.stdout)
@@ -264,7 +261,6 @@ class Kunefe:
         _, _, stderr_check = self.run_remote_command(
             command=check_install_command, timeout=30, flush=False, show_stdout=True)
 
-        # TODO: add the exectable to $PATH and check the executable on the remote system: command -v apptainer
         if stderr_install == "" or stderr_check == "":
             print(f"Installed at {exe_path}")
             return True
@@ -310,7 +306,6 @@ class Kunefe:
             >>> kunefe.check_required_tools(['docker', 'rsync', 'bsxcommand'])
             False
         """
-        # TODO: also check the required versions
         if all(self.check_local_command_exists(command) for command in command_list):
             return True
         else:

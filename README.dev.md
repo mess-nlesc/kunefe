@@ -42,6 +42,31 @@ The default user and the password for the SSH service are below.
 user: `xenon`
 password: `javagat`
 
+
+### Pushing the Docker image to dockerhub
+
+
+Login to dockerhub using your terminal
+
+```shell
+docker login -u YOURUSERNAME
+```
+
+Tag the new docker image
+
+```shell
+docker tag kunefe-slurm:latest nlesc/kunefe:slurm
+
+```
+
+Push the image to dockerhub
+
+```shell
+docker push nlesc/kunefe:slurm
+```
+
+
+
 ## Development install
 
 ```shell

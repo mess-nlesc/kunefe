@@ -13,13 +13,15 @@ Kunefe is a Python package that helps users run containerized applications (Dock
 
 ## Requirements
 
+In order to run your application with kunefe, you will need your application to be containerized. If your application is not containerized, you can follow this [guide](https://docs.docker.com/get-started/02_our_app/) to learn how to do that.
+
 ### The host system requirements (e.g. your laptop or desktop computer):
 
 - [Docker](https://docs.docker.com/engine/install/)
 - [Apptainer](https://apptainer.org/docs/admin/main/installation.html)
 - [Python 3](https://www.python.org/downloads/)
 
-### Remote system requirements:
+### Remote system requirements (e.g. HPC cluster):
 
 - [Apptainer](https://apptainer.org/docs/admin/main/installation.html)
 - [SSH server](https://www.openssh.com/)

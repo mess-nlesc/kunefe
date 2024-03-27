@@ -65,8 +65,6 @@ Push the image to dockerhub
 docker push nlesc/kunefe:slurm
 ```
 
-
-
 ## Development install
 
 ```shell

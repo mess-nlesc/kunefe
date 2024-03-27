@@ -6,7 +6,7 @@ import docker
 def test_docker_start():
     """Check if Docker container runs."""
     container_name = "test_docker_start"
-    docker_image_name = "xenonmiddleware/slurm:latest"
+    docker_image_name = "nlesc/kunefe:slurm"
 
     # https://docker-py.readthedocs.io/en/stable/containers.html
     client = docker.from_env()
@@ -38,7 +38,7 @@ def test_docker_start():
 def test_slurm_queue():
     """Check if the SLURM service of Xenon Docker image works."""
     container_name = "test_slurm_queue"
-    docker_image_name = "xenonmiddleware/slurm:latest"
+    docker_image_name = "nlesc/kunefe:slurm"
 
     # https://docker-py.readthedocs.io/en/stable/containers.html
     client = docker.from_env()

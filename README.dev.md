@@ -65,6 +65,8 @@ Push the image to dockerhub
 docker push nlesc/kunefe:slurm
 ```
 
+Dockerhub repository can be found at [https://hub.docker.com/repository/docker/nlesc/kunefe](https://hub.docker.com/repository/docker/nlesc/kunefe)
+
 ## Development install
 
 ```shell
